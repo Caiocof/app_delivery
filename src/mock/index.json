@@ -1,0 +1,59 @@
+{
+  "promotions": [
+    {
+      "id": 1,
+      "url_image": "",
+      "alt_image": "'image 01'"
+    },
+    {
+      "id": 2,
+      "url_image": "",
+      "alt_image": "'image 02'"
+    },
+    {
+      "id": 3,
+      "url_image": "",
+      "alt_image": "'image 03'"
+    },
+    {
+      "url_image": "",
+      "alt_image": "'image 04'",
+      "id": 4
+    },
+    {
+      "url_image": "",
+      "alt_image": "'image 05",
+      "id": 5
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "url_image": "",
+      "category": "tradicional",
+      "name": "Golden Burger",
+      "price": 25.5
+    },
+    {
+      "url_image": "",
+      "category": "tradicional",
+      "name": "Texas Burger",
+      "price": 35.5,
+      "id": 2
+    },
+    {
+      "url_image": "",
+      "category": "tradicional",
+      "name": "Monster Burger",
+      "price": 40,
+      "id": 3
+    },
+    {
+      "url_image": "",
+      "category": "tradicional",
+      "name": "Monster2 Burger",
+      "price": 50,
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+.divSearch{
+    height: 3.75rem;
+    background-color: #FFF;
+    border-radius: 0.31rem;
+    border: 1px solid;
+    display: flex;
+    flex-direction: row;
+    padding: 0.37rem;
+}
+
+.buttonSearch{
+    display: flex;
+    background-color: #F9F9FB;
+    width: 3rem;
+    height: auto;
+    margin-right: 0.81rem;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+}
+
+.inputSearch{
+    flex: 1;
+    border: 0;
+    outline: 0;
+    font-weight: 400;
+    font-size: 1rem;
+}

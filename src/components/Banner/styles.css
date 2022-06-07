@@ -1,0 +1,36 @@
+.slideContainer {
+    margin: 1.5rem;
+}
+
+.mySwiper {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0rem 0.5rem 2.5rem rgba(0, 0, 0, 0.08);
+}
+
+.swiperSlide {
+    text-align: center;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideImg {
+    display: flex;
+    width: 100%;
+    height: 11.8rem;
+    object-fit: cover;
+    background-color: #CCC;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideImg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
