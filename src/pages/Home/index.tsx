@@ -5,16 +5,28 @@ import { MenuBurger } from '../../components/MenuBurger';
 import { SearchInput } from '../../components/SearchInput';
 import { getItems } from '../../service/items';
 import { getPromotions } from '../../service/promotions';
+import { bannerImage, bannerImage2, mainColor } from '../../utils';
 
 import './styles.css'
-
-const mainColor = '#FB9400'
-
 
 export const Home = () => {
 
     const [itemsPromotion, setItemsPromotion] = useState([])
     const [items, setItems] = useState([])
+
+    const promotions = [
+        {
+            id: 1,
+            url_image: bannerImage,
+            alt_image: 'Product Name'
+        },
+        {
+            id: 2,
+            url_image: bannerImage2,
+            alt_image: 'Product Name'
+        }
+
+    ]
 
     const handleOnSearch = (searchValue: string) => {
         handleGetItems(searchValue);
@@ -22,7 +34,8 @@ export const Home = () => {
 
     const handleGetPromotions = (filters?: string) => {
         getPromotions(filters)
-            .then(({ data }) => setItemsPromotion(data))
+            .then(({ data }) => setItemsPromotion(data)
+            )
             .catch((error) => console.log(error)
             )
     }
@@ -58,7 +71,7 @@ export const Home = () => {
                 />
             </header>
             <Banner
-                itemSlide={itemsPromotion}
+                itemSlide={promotions}
             />
             <div>
                 <GridItems

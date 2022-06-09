@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { formatMoney } from '../../utils';
+import { burgerImage, formatMoney } from '../../utils';
 
-import burgerImage from '../../assets/burger.png'
 import './styles.css'
 import { IProducts } from "../../interfaces/products";
 
@@ -30,7 +29,7 @@ export const GridItems = ({ gridItems, mainColor, secundColor }: GridItemsProps)
                             onClick={() => handleClick(values.id)}
                             className='item'>
                             <div className="itemTop" style={{ backgroundColor: secundColor }}>
-                                <img src={values.url_image || burgerImage} alt="Burger Image" />
+                                <img src={values.url_image || burgerImage} alt="Product Image" />
                             </div>
                             <div className="itemBottom">
                                 <span className="itemCategory">{values.category}</span>

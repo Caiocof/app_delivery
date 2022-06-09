@@ -3,6 +3,7 @@ export interface IProducts {
     url_image: string;
     category: string;
     name: string;
+    description?: string;
     price: number;
 
 }

@@ -71,6 +71,9 @@
         width: 10rem;
         height: 10rem;
     }
+    .itemName{
+        font-weight: 600;
+    }
 }
 @media screen and (max-width: 374px) {
     .item{

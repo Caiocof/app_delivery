@@ -1,5 +1,5 @@
 import { Minus, Plus } from 'phosphor-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles.css'
 
 
@@ -15,8 +15,12 @@ export const QuantityInput = ({ mainColor, sizeRem, onQuantity }: QuantityInputP
     const handleQuantity = (action: string) => {
         const value = action === 'minus' ? (quantity - 1) : (quantity + 1)
         setQuantity(value < 1 ? 1 : value)
-        onQuantity(quantity)
+
     }
+
+    useEffect(() => {
+        onQuantity(quantity)
+    }, [quantity])
 
     return (
         <div className="quantityContainer">

@@ -1,30 +1,20 @@
-import { useNavigate } from 'react-router-dom';
 import './styles.css'
 
 
 interface ButtonProps {
     title: string;
     buttonColor: string;
-    navigateRoute?: string;
+    isClicked?: () => void;
 }
 
-export const Button = ({ title, buttonColor, navigateRoute }: ButtonProps) => {
-    const navigate = useNavigate()
-
-
-    const handleNavigate = () => {
-        if (navigateRoute) {
-            navigate(navigateRoute)
-        }
-
-    }
+export const Button = ({ title, buttonColor, isClicked }: ButtonProps) => {
 
     return (
         <div
             className="buttonContainer"
             style={{ backgroundColor: buttonColor }}
         >
-            <div onClick={handleNavigate}>
+            <div onClick={isClicked}>
                 {title || '...'}
             </div>
         </div>
