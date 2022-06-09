@@ -1,0 +1,34 @@
+.quantityContainer {
+    display: flex;
+}
+
+.buttonMinus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    border: none;
+    background-color: #F2F4F5;
+}
+
+.inputValue {
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid #F2F4F5;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.12rem;
+    line-height: 1.36rem;
+
+}
+
+.buttonPlus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    border: none;
+    background-color: #F2F4F5;
+}
