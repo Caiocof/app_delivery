@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getItem } from '../../service/items';
+import { getItemForId } from '../../service/items';
 import { IProducts } from '../../interfaces/products';
 
 export const Products = () => {
@@ -13,7 +13,7 @@ export const Products = () => {
     }
 
     const handleGetItem = (id_product: number) => {
-        getItem(id_product)
+        getItemForId(id_product)
             .then(({ data }) => setItem(data))
             .catch((error) => console.log(error)
             )

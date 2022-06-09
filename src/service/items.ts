@@ -8,6 +8,6 @@ export const getItems = (filters?: string): AxiosPromise => {
     return api.get('/items')
 }
 
-export const getItem = (id: number): AxiosPromise => {
+export const getItemForId = (id: number): AxiosPromise => {
     return api.get(`/items/${id}`)
 }

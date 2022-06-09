@@ -27,11 +27,15 @@ Project developed for practice study React/TypeScript
 
 
 ## Run Project
- 1° - Open terminal/prompt and type:
+ 1° Open terminal/prompt and type:
 
     npm i
 
- 2° - When finish process 1°, type:
+ 3° For start backend mock, type:
+
+    json-server --watch src/mock/index.json --port 8000
+
+ 2° Open other terminal/prompt and type:
 
     npm run dev
 
