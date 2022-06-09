@@ -32,12 +32,14 @@
       "url_image": "",
       "category": "tradicional",
       "name": "Golden Burger",
+      "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
       "price": 25.5
     },
     {
       "url_image": "",
       "category": "tradicional",
       "name": "Texas Burger",
+      "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
       "price": 35.5,
       "id": 2
     },
@@ -45,6 +47,7 @@
       "url_image": "",
       "category": "tradicional",
       "name": "Monster Burger",
+      "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
       "price": 40,
       "id": 3
     },
@@ -52,6 +55,7 @@
       "url_image": "",
       "category": "tradicional",
       "name": "Monster2 Burger",
+      "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
       "price": 50,
       "id": 4
     }
