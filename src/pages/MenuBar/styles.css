@@ -1,0 +1,67 @@
+.menuContainer {
+    display: flex;
+    padding: 1.5rem;
+    flex-direction: column;
+}
+
+.menuHeader {
+    display: flex;
+    margin: 3.37rem 0 2rem 0;
+    padding: 0 0.35rem 0 2.62rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.userName {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.81rem;
+    color: #1B1B1B;
+}
+
+.lastAccess {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.21rem;
+    color: #96A3AB;
+}
+
+.headerLeft {
+    width: 14.62rem;
+}
+
+.menuBody {
+    display: flex;
+    align-self: flex-start;
+}
+
+.menuList {
+    display: flex;
+    margin: 3rem 0 0 3rem;
+    list-style-type: none;
+}
+
+.menuListName {
+    margin-left: 1.5rem;
+    color: #6A7D8B;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.21rem;
+}
+
+.footer {
+    display: flex;
+    width: 20%;
+    margin: 17rem 0 1rem 3rem;
+    align-items: center;
+}
+
+.footer p {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.21rem;
+}
+
+.icon {
+    transform: rotate(180deg);
+}

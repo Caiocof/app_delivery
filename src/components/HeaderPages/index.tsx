@@ -4,7 +4,7 @@ import './styles.css'
 
 interface HeaderPagesProps {
     iconColor: string;
-    title: string;
+    title?: string;
     navigateRoute?: string;
     titleColor?: string;
     rightButton?: boolean;

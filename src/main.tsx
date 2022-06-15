@@ -6,6 +6,8 @@ import { Routers } from './routes'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Routers />
+    <div className="containerApp">
+      <Routers />
+    </div>
   </React.StrictMode>
 )

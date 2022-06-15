@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Banner } from '../../components/Banner';
 import { GridItems } from '../../components/GridItems';
 import { MenuBurger } from '../../components/MenuBurger';
@@ -10,9 +11,10 @@ import { bannerImage, bannerImage2, mainColor } from '../../utils';
 import './styles.css'
 
 export const Home = () => {
-
     const [itemsPromotion, setItemsPromotion] = useState([])
     const [items, setItems] = useState([])
+
+    const navigate = useNavigate();
 
     const promotions = [
         {
@@ -46,6 +48,11 @@ export const Home = () => {
             .catch((error) => console.log(error))
     }
 
+
+    const handleMenuBar = () => {
+        navigate('menubar')
+    }
+
     useEffect(() => {
         handleGetPromotions()
         handleGetItems()
@@ -62,6 +69,7 @@ export const Home = () => {
                     <div>
                         <MenuBurger
                             mainColor={mainColor}
+                            isClicked={handleMenuBar}
                         />
                     </div>
                 </div>
