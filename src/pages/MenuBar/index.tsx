@@ -28,6 +28,7 @@ export const MenuBar = () => {
             <Button
                 title='Fazer Login'
                 buttonColor={mainColor}
+                isClicked={() => navigate('/account')}
             />
         );
     }
