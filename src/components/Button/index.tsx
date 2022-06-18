@@ -3,6 +3,7 @@ import './styles.css'
 
 interface ButtonProps {
     title: string;
+    titleColor?: string;
     buttonColor: string;
     borderColor?: string;
     isClicked?: () => void;
@@ -10,6 +11,7 @@ interface ButtonProps {
 
 export const Button = ({
     title,
+    titleColor,
     buttonColor,
     borderColor,
     isClicked }: ButtonProps) => {
@@ -23,7 +25,10 @@ export const Button = ({
                 border: border
             }}
         >
-            <div onClick={isClicked}>
+            <div
+                onClick={isClicked}
+                style={{ color: titleColor || '#FFF'}}
+            >
                 {title || '...'}
             </div>
         </div>

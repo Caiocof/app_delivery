@@ -1,11 +1,11 @@
-import { EyeSlash } from "phosphor-react";
+import { Eye, EyeSlash } from "phosphor-react";
 import { useEffect, useState } from 'react';
 import './styles.css'
 
 interface InputFormProps {
     mainColor: string;
-    placeholder?: string;
-    inputType?: string;
+    placeholder: string;
+    inputType: string;
     backgroundColor?: string;
     onValue: (inputValue: string) => void;
 }
@@ -19,21 +19,28 @@ export const InputForm = ({
 
     const [focused, setFocused] = useState(false)
     const [inputValue, setInputValue] = useState('')
+    const [typeInput, setTypeInput] = useState(inputType)
+    const [showPassword, setShowPassword] = useState(false)
+
+
+
 
     const handleIconPassword = () => {
         if (inputType == 'password') {
             return (
-                <div className="divIcon">
-                    <EyeSlash size={32} />
+                <div className="divIcon" onClick={() => {
+                    setShowPassword(!showPassword)
+                    setTypeInput(showPassword ? 'password' : 'text')
+                }}>
+                    {showPassword ?
+                        <Eye size={30} color={'#1B1B1B80'} /> :
+                        <EyeSlash size={30} color={'#1B1B1B80'} />
+                    }
                 </div>
             );
         }
-        return (
-            <div className="divIcon">
-            </div>
-        );
-    }
 
+    }
 
     useEffect(() => {
         onValue(inputValue)
@@ -48,7 +55,7 @@ export const InputForm = ({
             <input
                 className="input"
                 placeholder={placeholder}
-                type={inputType}
+                type={typeInput}
                 style={{ backgroundColor: backgroundColor }}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}

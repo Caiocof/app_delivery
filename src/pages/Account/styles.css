@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+
+.RegisterContainer {
+    display: flex;
+    padding: 50px 1.5rem;
+    flex-direction: column;
+}
+
+
+.registerHeader {
+    margin-bottom: 40px;
+}
+
+.registerHeaderBody {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    margin: auto;
+    align-items: center;
+}
+
+.registerHeaderLogo {
+    font-family: 'Calistoga';
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 2.92rem;
+    color: #1B1B1B;
+    margin-bottom: 40px;
+}
+
+.registerHeaderText {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.36rem;
+    color: rgba(27, 27, 27, 0.8);
+}
+
+.registerForm div:nth-child(1) {
+    margin: 40px 0;
+}
+
+.registerForgetPassword {
+    align-self: center;
+    margin: 48px 0 62px 0;
+}
+
+.registerForgetPassword a {
+    text-decoration: none;
+}
