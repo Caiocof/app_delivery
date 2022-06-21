@@ -1,7 +1,8 @@
+import { ButtonHTMLAttributes } from 'react';
 import './styles.css'
 
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     title: string;
     titleColor?: string;
     buttonColor: string;
@@ -14,7 +15,8 @@ export const Button = ({
     titleColor,
     buttonColor,
     borderColor,
-    isClicked }: ButtonProps) => {
+    isClicked,
+    ...rest }: ButtonProps) => {
 
     const border = borderColor ? `1px solid ${borderColor}` : 'none'
     return (
@@ -25,12 +27,13 @@ export const Button = ({
                 border: border
             }}
         >
-            <div
+            <button
+                {...rest}
                 onClick={isClicked}
-                style={{ color: titleColor || '#FFF'}}
+                style={{ color: titleColor || '#FFF' }}
             >
                 {title || '...'}
-            </div>
+            </button>
         </div>
     );
 }

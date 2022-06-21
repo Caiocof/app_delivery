@@ -1,20 +1,19 @@
 import { Eye, EyeSlash } from "phosphor-react";
-import { useEffect, useState } from 'react';
+import { InputHTMLAttributes, useEffect, useState } from 'react';
 import './styles.css'
 
-interface InputFormProps {
+interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
     mainColor: string;
     placeholder: string;
     inputType: string;
     backgroundColor?: string;
-    onValue: (inputValue: string) => void;
 }
 export const InputForm = ({
     mainColor,
     backgroundColor,
     placeholder,
     inputType,
-    onValue
+    ...rest
 }: InputFormProps) => {
 
     const [focused, setFocused] = useState(false)
@@ -42,17 +41,13 @@ export const InputForm = ({
 
     }
 
-    useEffect(() => {
-        onValue(inputValue)
-
-    }, [inputValue])
-
 
     return (
         <div
             className='inputContainer'
             style={{ borderColor: focused ? mainColor : '#FFF' }}>
             <input
+                {...rest}
                 className="input"
                 placeholder={placeholder}
                 type={typeInput}

@@ -1,25 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
 
-.RegisterContainer {
+.AccountContainer {
     display: flex;
     padding: 50px 1.5rem;
     flex-direction: column;
+    min-height: 920px;
 }
 
-
-.registerHeader {
+.accountHeader {
     margin-bottom: 40px;
 }
 
-.registerHeaderBody {
+.accountHeaderBody {
     display: flex;
     flex-direction: column;
-    width: 15rem;
+    width: 250px;
     margin: auto;
     align-items: center;
 }
 
-.registerHeaderLogo {
+.accountHeaderLogo {
     font-family: 'Calistoga';
     font-weight: 400;
     font-size: 2rem;
@@ -28,7 +28,7 @@
     margin-bottom: 40px;
 }
 
-.registerHeaderText {
+.accountHeaderText {
     text-align: center;
     font-weight: 400;
     font-size: 1.1rem;
@@ -36,15 +36,23 @@
     color: rgba(27, 27, 27, 0.8);
 }
 
-.registerForm div:nth-child(1) {
+.accountForm div:nth-child(1) {
     margin: 40px 0;
 }
 
-.registerForgetPassword {
+.messageFooter {
     align-self: center;
     margin: 48px 0 62px 0;
 }
 
-.registerForgetPassword a {
+.messageFooter a {
     text-decoration: none;
+}
+
+.forgetMessage{
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.81rem;
+    color: #1B1B1B;
+    margin-bottom: 30px;
 }

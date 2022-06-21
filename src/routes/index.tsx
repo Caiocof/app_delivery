@@ -6,8 +6,9 @@ import {
 import { Home } from "../pages/Home";
 import { MenuBar } from "../pages/MenuBar";
 import { Products } from "../pages/Product";
-import { RegisterLogin } from "../pages/Account";
-import { RegisterPage } from "../pages/Account/layouts/RegisterPage";
+import { PageLogin } from "../pages/Account";
+import { PageRegister } from "../pages/Account/layouts/PageRegister";
+import { PageForget } from "../pages/Account/layouts/PageForget";
 
 export const Routers = () => {
     return (
@@ -15,8 +16,9 @@ export const Routers = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/menubar" element={<MenuBar />} />
-                <Route path="/account" element={<RegisterLogin />} />
-                <Route path="/account/register-account" element={<RegisterPage />} />
+                <Route path="/account" element={<PageLogin />} />
+                <Route path="/account/register-account" element={<PageRegister />} />
+                <Route path="/account/forget-account" element={<PageForget />} />
                 <Route path="/products/:id" element={<Products />} />
             </Routes>
         </BrowserRouter>
