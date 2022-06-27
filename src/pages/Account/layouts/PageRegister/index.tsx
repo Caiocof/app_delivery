@@ -1,25 +1,33 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/Button";
 import { DivisionItems } from "../../../../components/DivisionItems";
 import { HeaderPages } from "../../../../components/HeaderPages";
 import { InputForm } from "../../../../components/InputForm";
+import { registerUser } from "../../../../service/users";
 import { mainColor } from "../../../../utils";
 
 import '../../styles.css'
 
 export const PageRegister = () => {
+    const [buttonDisable, setButtonDisable] = useState(false)
     const navigate = useNavigate()
 
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
-        const { userName, email, password } = event.target as HTMLFormElement;
-        console.log('name: ', userName.value);
-        console.log('email: ', email.value);
-        console.log('password: ', password.value);
-    }
+        setButtonDisable(true)
 
+        const form = event.target as HTMLFormElement;
+        const { userName, email, password } = form
+        registerUser(userName.value, email.value, password.value)
+            .then(({ data }) => {
+                localStorage.setItem("user", JSON.stringify(data));
+                navigate('/')
+            })
+            .catch((error) => console.log(error)
+            )
+    }
 
     return (
         <div className="AccountContainer">
@@ -75,6 +83,7 @@ export const PageRegister = () => {
                     buttonColor={mainColor}
                     title='Cadastrar'
                     type="submit"
+                    disabled={buttonDisable}
                 />
             </form>
             <span className='messageFooter'>

@@ -4,20 +4,16 @@ import { Button } from "../../../../components/Button";
 import { DivisionItems } from "../../../../components/DivisionItems";
 import { HeaderPages } from "../../../../components/HeaderPages";
 import { InputForm } from "../../../../components/InputForm";
+import { registerUser } from "../../../../service/users";
 import { mainColor } from "../../../../utils";
 
 import '../../styles.css'
 
 export const PageForget = () => {
-    const navigate = useNavigate()
-
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
-        const { userName, email, password } = event.target as HTMLFormElement;
-        console.log('name: ', userName.value);
-        console.log('email: ', email.value);
-        console.log('password: ', password.value);
+        console.log('Forget');
     }
 
 

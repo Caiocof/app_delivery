@@ -1,26 +1,45 @@
 import { Bag, ClipboardText, ForkKnife, GearSix, SignOut, X } from 'phosphor-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns'
+import ptBr from 'date-fns/locale/pt-BR'
 import { Button } from '../../components/Button';
 import { DivisionItems } from '../../components/DivisionItems';
+import { IUser } from '../../interfaces/user';
 import { mainColor } from '../../utils';
 import './styles.css'
 
 export const MenuBar = () => {
     const navigate = useNavigate()
 
-    const [logged, setLogged] = useState(false)
+    const [userLogged, setUserLogged] = useState<IUser>()
 
-    const handleRoute = (route: string) => {
-        navigate(route)
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            let userStorage = JSON.parse(localStorage.getItem('user') || '');
+            setUserLogged(userStorage[0]);
+        }
+    }, [])
+
+    const handleLogout = () => {
+        localStorage.clear()
+        navigate('/')
     }
 
     const handleHeader = () => {
-        if (logged) {
+        if (userLogged) {
+            const access = format(
+                new Date(userLogged.last_access),
+                "dd MMM yyyy HH:mm",
+                {
+                    locale: ptBr,
+                })
+
             return (
                 <div>
-                    <p className='userName'>Caio César</p>
-                    <p className='lastAccess'>Ultimo pedido há 2 semanas</p>
+                    <p className='userName'>{userLogged.name}</p>
+                    <p className='lastAccess'>{access}</p>
                 </div>
             )
         }
@@ -34,9 +53,9 @@ export const MenuBar = () => {
     }
 
     const handleFooter = () => {
-        if (logged) {
+        if (userLogged) {
             return (
-                <footer className="footer" onClick={() => handleRoute('/')}>
+                <footer className="footer" onClick={handleLogout}>
                     <div className='icon'>
                         <SignOut color='#6A7D8B' size={17} weight="bold" />
                     </div>
@@ -60,7 +79,7 @@ export const MenuBar = () => {
                         size={20}
                         weight="bold"
                         color={mainColor || '#1B1B1B'}
-                        onClick={() => handleRoute('/')}
+                        onClick={() => navigate('/')}
                     />
                 </div>
             </div>

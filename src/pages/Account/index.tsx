@@ -1,21 +1,32 @@
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { DivisionItems } from '../../components/DivisionItems';
 import { HeaderPages } from '../../components/HeaderPages';
 import { InputForm } from '../../components/InputForm';
+import { login } from '../../service/users';
 import { mainColor } from '../../utils';
 import './styles.css'
 
 export const PageLogin = () => {
+    const [buttonDisable, setButtonDisable] = useState(false)
     const navigate = useNavigate()
-
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
+        setButtonDisable(true)
+
         const { email, password } = event.target as HTMLFormElement;
-        console.log('email: ', email.value);
-        console.log('password: ', password.value);
+        login(email.value, password.value)
+            .then(({ data }) => {
+                localStorage.setItem("user", JSON.stringify(data));
+                navigate('/')
+            })
+            .catch((error) => {
+                setButtonDisable(false)
+                console.log(error)
+            }
+            )
 
 
     }
@@ -61,6 +72,7 @@ export const PageLogin = () => {
                     buttonColor={mainColor}
                     title='Entrar'
                     type='submit'
+                    disabled={buttonDisable}
                 />
             </form>
             <span className='messageFooter'>
