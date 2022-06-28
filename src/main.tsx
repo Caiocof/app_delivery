@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { MessageContextProvider } from './contexts/messageContexts'
 
 import './index.css'
 import { Routers } from './routes'
@@ -7,7 +8,9 @@ import { Routers } from './routes'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <div className="containerApp">
-      <Routers />
+      <MessageContextProvider>
+        <Routers />
+      </MessageContextProvider>
     </div>
   </React.StrictMode>
 )

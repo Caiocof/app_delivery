@@ -1,10 +1,9 @@
-import { FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useState } from "react";
 import { Button } from "../../../../components/Button";
 import { DivisionItems } from "../../../../components/DivisionItems";
 import { HeaderPages } from "../../../../components/HeaderPages";
 import { InputForm } from "../../../../components/InputForm";
-import { registerUser } from "../../../../service/users";
+import { Message } from "../../../../components/Message";
 import { mainColor } from "../../../../utils";
 
 import '../../styles.css'
@@ -13,7 +12,6 @@ export const PageForget = () => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
-        console.log('Forget');
     }
 
 

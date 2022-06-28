@@ -1,12 +1,10 @@
 import { Bag, ClipboardText, ForkKnife, GearSix, SignOut, X } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { format } from 'date-fns'
-import ptBr from 'date-fns/locale/pt-BR'
 import { Button } from '../../components/Button';
 import { DivisionItems } from '../../components/DivisionItems';
 import { IUser } from '../../interfaces/user';
-import { mainColor } from '../../utils';
+import { formatDate, mainColor } from '../../utils';
 import './styles.css'
 
 export const MenuBar = () => {
@@ -18,7 +16,7 @@ export const MenuBar = () => {
     useEffect(() => {
         if (localStorage.getItem('user')) {
             let userStorage = JSON.parse(localStorage.getItem('user') || '');
-            setUserLogged(userStorage[0]);
+            setUserLogged(userStorage);
         }
     }, [])
 
@@ -29,12 +27,8 @@ export const MenuBar = () => {
 
     const handleHeader = () => {
         if (userLogged) {
-            const access = format(
-                new Date(userLogged.last_access),
-                "dd MMM yyyy HH:mm",
-                {
-                    locale: ptBr,
-                })
+            const access = formatDate(userLogged.last_access, "dd MMM yyyy HH:mm")
+
 
             return (
                 <div>

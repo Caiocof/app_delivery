@@ -22,7 +22,7 @@ export const PageRegister = () => {
         const { userName, email, password } = form
         registerUser(userName.value, email.value, password.value)
             .then(({ data }) => {
-                localStorage.setItem("user", JSON.stringify(data));
+                localStorage.setItem('user', JSON.stringify(data));
                 navigate('/')
             })
             .catch((error) => console.log(error)
