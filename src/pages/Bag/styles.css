@@ -1,0 +1,112 @@
+.bagContainer {
+  display: flex;
+  padding: 50px 1.5rem;
+  flex-direction: column;
+  min-height: 429px;
+  background-color: #FFF;
+}
+
+.bagHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 15px;
+}
+
+.bagHeader .bagAmountItems {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.bagCardItems {
+  margin-bottom: 31px;
+}
+
+.bagShipping {
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.bagShipping span {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #6A7D8B;
+  margin-bottom: 16px;
+}
+
+.bagValueTotal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 337px;
+  padding: 48px 32px 48px 32px;
+  gap: 24px;
+  background-color: #F9F9FA;
+  border-radius: 8px;
+}
+
+.bagValueTotal>hr {
+  border-top: 1px dashed #96A3AB;
+}
+
+.bagValueTotal .bagSubtotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bagValueTotal .bagSubtotal span:nth-child(1) {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.bagValueTotal .bagSubtotal span:nth-child(2) {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.bagValueTotal .bagValueShipping {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bagValueTotal .bagValueShipping span:nth-child(1) {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.bagValueTotal .bagValueShipping span:nth-child(2) {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.bagValueTotal .bagTotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bagValueTotal .bagTotal span:nth-child(1) {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.bagValueTotal .bagTotal span:nth-child(2) {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}

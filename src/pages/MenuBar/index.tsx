@@ -28,8 +28,6 @@ export const MenuBar = () => {
     const handleHeader = () => {
         if (userLogged) {
             const access = formatDate(userLogged.last_access, "dd MMM yyyy HH:mm")
-
-
             return (
                 <div>
                     <p className='userName'>{userLogged.name}</p>
@@ -83,13 +81,13 @@ export const MenuBar = () => {
             />
             <div className="menuBody">
                 <ul>
-                    <li className="menuList">
+                    <li className="menuList" onClick={() => navigate('/')}>
                         <div className="menuListIcon">
                             <ForkKnife size={20} weight="bold" color='#6A7D8B' />
                         </div>
                         <div className="menuListName">Cardápio</div>
                     </li>
-                    <li className="menuList">
+                    <li className="menuList" onClick={() => navigate('/bag')}>
                         <div className="menuListIcon">
                             <Bag size={20} weight="bold" color='#6A7D8B' />
                         </div>

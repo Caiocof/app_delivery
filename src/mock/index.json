@@ -71,49 +71,13 @@
       "last_access": "2022-06-21 15:47:00"
     },
     {
-      "name": "Ariadne",
-      "email": "ariadne@gmail.com",
-      "password": "123456789",
+      "name": "andre sila",
+      "email": "andre@gmail.com",
+      "password": "123",
       "role": "user",
-      "token": 362749831,
-      "last_access": "2022-06-28T14:19:07.572Z",
+      "token": -1639657257,
+      "last_access": "2022-06-29T09:06:38.067Z",
       "id": 2
-    },
-    {
-      "name": "Igor garcia",
-      "email": "igor.pereira@bravi.com.br",
-      "password": "123456",
-      "role": "user",
-      "token": -1639657195,
-      "last_access": "2022-06-28T20:28:25.659Z",
-      "id": 3
-    },
-    {
-      "name": "novo teste",
-      "email": "teste@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "token": -1639657197,
-      "last_access": "2022-06-28T20:28:25.659Z",
-      "id": 4
-    },
-    {
-      "name": "teste2",
-      "email": "teste2@gmail.com",
-      "password": "123",
-      "role": "user",
-      "token": -1639657231,
-      "last_access": "2022-06-28T21:09:33.034Z",
-      "id": 5
-    },
-    {
-      "name": "teste3",
-      "email": "teste3@gmail.com",
-      "password": "123",
-      "role": "user",
-      "token": -1639657264,
-      "last_access": "2022-06-28T21:09:33.034Z",
-      "id": 6
     }
   ]
 }
