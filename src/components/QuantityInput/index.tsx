@@ -6,11 +6,12 @@ import './styles.css'
 interface QuantityInputProps {
     mainColor: string;
     sizeRem: number;
+    valueInitial?: number;
     onQuantity: (quantityValue: number) => void;
 }
 
-export const QuantityInput = ({ mainColor, sizeRem, onQuantity }: QuantityInputProps) => {
-    const [quantity, setQuantity] = useState(1)
+export const QuantityInput = ({ mainColor, sizeRem, valueInitial, onQuantity }: QuantityInputProps) => {
+    const [quantity, setQuantity] = useState(valueInitial || 1)
 
     const handleQuantity = (action: string) => {
         const value = action === 'minus' ? (quantity - 1) : (quantity + 1)
@@ -34,7 +35,11 @@ export const QuantityInput = ({ mainColor, sizeRem, onQuantity }: QuantityInputP
             <input
                 type="number"
                 className="inputValue"
-                style={{ height: `${sizeRem}rem`, width: `${sizeRem}rem` }}
+                style={{
+                    height: `${sizeRem}rem`,
+                    width: `${sizeRem}rem`,
+                    color: mainColor
+                }}
                 minLength={1}
                 max={20}
                 value={quantity}
