@@ -1,5 +1,6 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { MessageContext } from '../../../../contexts/messageContexts'
 import { Button } from "../../../../components/Button";
 import { DivisionItems } from "../../../../components/DivisionItems";
 import { HeaderPages } from "../../../../components/HeaderPages";
@@ -10,8 +11,10 @@ import { mainColor } from "../../../../utils";
 import '../../styles.css'
 
 export const PageRegister = () => {
-    const [buttonDisable, setButtonDisable] = useState(false)
+    const { setMessageProps } = useContext(MessageContext)
     const navigate = useNavigate()
+
+    const [buttonDisable, setButtonDisable] = useState(false)
 
 
     const handleSubmit = (event: FormEvent) => {
@@ -22,8 +25,22 @@ export const PageRegister = () => {
         const { userName, email, password } = form
         registerUser(userName.value, email.value, password.value)
             .then(({ data }) => {
-                localStorage.setItem('user', JSON.stringify(data));
-                navigate('/')
+                if (data) {
+                    localStorage.setItem('user', JSON.stringify(data));
+                    setMessageProps({
+                        message: 'Cadastro realizado com sucesso!',
+                        typeMessage: 'success',
+                        showMessage: true
+                    })
+                    navigate('/')
+                } else {
+                    setButtonDisable(false)
+                    setMessageProps({
+                        message: 'Erro ao cadastrar!',
+                        typeMessage: 'warning',
+                        showMessage: true
+                    })
+                }
             })
             .catch((error) => console.log(error)
             )
