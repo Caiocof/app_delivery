@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BagContextProvider } from './contexts/bagContexts'
 import { MessageContextProvider } from './contexts/messageContexts'
 
 import './index.css'
@@ -9,7 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <div className="containerApp">
       <MessageContextProvider>
-        <Routers />
+        <BagContextProvider>
+          <Routers />
+        </BagContextProvider>
       </MessageContextProvider>
     </div>
   </React.StrictMode>

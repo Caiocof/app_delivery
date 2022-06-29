@@ -1,41 +1,40 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { BagContext } from '../../contexts/bagContexts';
+import { IProducts } from '../../interfaces/products';
 import { formatMoney } from '../../utils';
 import { DivisionItems } from '../DivisionItems';
 import { QuantityInput } from '../QuantityInput';
 import './styles.css'
 
 interface CardOrderProps {
-  url_image: string;
-  titleProduct: string;
-  nameProduct: string;
-  priceProduct: number;
+  product: IProducts;
   amountProduct: number;
   mainColor: string;
 }
 
 export const CardOrder = ({
-  url_image,
-  titleProduct,
-  nameProduct,
-  priceProduct,
+  product,
   amountProduct,
-  mainColor }: CardOrderProps) => {
+  mainColor,
+}: CardOrderProps) => {
 
-  const [price, setPrice] = useState(priceProduct || 0)
+  const { addBagItems } = useContext(BagContext)
+  const [price, setPrice] = useState(product.price || 0)
 
   const handleOnQuantity = (quantity: number) => {
-    setPrice(priceProduct * quantity)
+    setPrice(product.price * quantity)
+    addBagItems(product, quantity)
   }
 
   return (
     <>
       <div className="cardOrderContainer">
         <div className='cardOrderImg'>
-          <img src={url_image || ''} alt="Product Image" />
+          <img src={product.url_image || ''} alt="Product Image" />
         </div>
         <div className='cardOrderProduct'>
-          <span className='titleProduct'>{titleProduct}</span>
-          <span className='nameProduct'>{nameProduct}</span>
+          <span className='titleProduct'>{product.category}</span>
+          <span className='nameProduct'>{product.name}</span>
           <span className='priceProduct' style={{ color: mainColor }}>{formatMoney(price)}</span>
         </div>
         <div className='cardOrderAmount'>

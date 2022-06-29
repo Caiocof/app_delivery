@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getItemForId } from '../../service/items';
 import { IProducts } from '../../interfaces/products';
@@ -10,14 +10,16 @@ import { QuantityInput } from '../../components/QuantityInput';
 import { Button } from '../../components/Button';
 
 import './styles.css'
+import { BagContext } from '../../contexts/bagContexts';
+
 
 export const Products = () => {
     const { id: id_product } = useParams()
-    const navigate = useNavigate()
+    const { bagProps, addBagItems } = useContext(BagContext)
 
     const [item, setItem] = useState<IProducts>({} as IProducts)
+    const [amountItems, setAmountItems] = useState(1)
     const [price, setPrice] = useState(0)
-
 
 
     const handleGetItem = (id_product: number) => {
@@ -32,6 +34,12 @@ export const Products = () => {
 
     const handleOnQuantity = (quantity: number) => {
         setPrice(item.price * quantity)
+        setAmountItems(quantity)
+    }
+
+    const handleSubmitForm = (event: FormEvent) => {
+        event.preventDefault()
+        addBagItems(item, amountItems)
     }
 
     useEffect(() => {
@@ -66,14 +74,12 @@ export const Products = () => {
                 />
                 <p className="descriptionProducts">{item.description}</p>
                 <span className="quantityProducts">Quantidade</span>
-                <form action="">
-
+                <form onSubmit={handleSubmitForm}>
                     <div className="divQuantity">
                         <QuantityInput
                             mainColor={mainColor}
                             sizeRem={3}
                             onQuantity={handleOnQuantity}
-
                         />
                         <span className="priceProducts" style={{ color: mainColor }}>
                             {formatMoney(price)}
