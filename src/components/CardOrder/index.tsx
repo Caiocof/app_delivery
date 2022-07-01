@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { BagContext } from '../../contexts/bagContexts';
 import { IProducts } from '../../interfaces/products';
-import { formatMoney } from '../../utils';
+import { burgerImage, formatMoney } from '../../utils';
 import { DivisionItems } from '../DivisionItems';
 import { QuantityInput } from '../QuantityInput';
 import './styles.css'
@@ -18,10 +18,14 @@ export const CardOrder = ({
   mainColor,
 }: CardOrderProps) => {
 
-  const { addBagItems } = useContext(BagContext)
+  const { addBagItems, removeBagItems } = useContext(BagContext)
   const [price, setPrice] = useState(product.price || 0)
 
   const handleOnQuantity = (quantity: number) => {
+    if (quantity == 0) {
+      removeBagItems(product)
+      return 
+    }
     setPrice(product.price * quantity)
     addBagItems(product, quantity)
   }
@@ -30,7 +34,7 @@ export const CardOrder = ({
     <>
       <div className="cardOrderContainer">
         <div className='cardOrderImg'>
-          <img src={product.url_image || ''} alt="Product Image" />
+          <img src={product.url_image || burgerImage} alt="Product Image" />
         </div>
         <div className='cardOrderProduct'>
           <span className='titleProduct'>{product.category}</span>
@@ -41,6 +45,7 @@ export const CardOrder = ({
           <QuantityInput
             mainColor={mainColor}
             sizeRem={2.6}
+            minLength={0}
             valueInitial={amountProduct}
             onQuantity={handleOnQuantity}
           />

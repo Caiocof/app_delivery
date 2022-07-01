@@ -4,11 +4,11 @@ import { CardOrder } from '../../components/CardOrder'
 import { DivisionItems } from '../../components/DivisionItems'
 import { HeaderPages } from '../../components/HeaderPages'
 import { BagContext } from '../../contexts/bagContexts'
-import { burgerImage, formatMoney, mainColor } from '../../utils'
+import { formatMoney, mainColor } from '../../utils'
 import './styles.css'
 
 export const Bag = () => {
-  const { bagProps, addBagItems } = useContext(BagContext)
+  const { bagProps } = useContext(BagContext)
 
   const [titleButton, setTitleButton] = useState('Selecionar Endereço')
   const [valueTotal, setValueTotal] = useState(0)
@@ -35,7 +35,7 @@ export const Bag = () => {
           mainColor={mainColor}
           completed={0}
         />
-        <span className="bagAmountItems">4 itens</span>
+        <span className="bagAmountItems">{`${bagProps.length} item${bagProps.length > 1 ? 's' : ''}`}</span>
         <DivisionItems
           mainColor={mainColor}
           completed={0}

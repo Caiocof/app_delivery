@@ -7,16 +7,18 @@ interface QuantityInputProps {
     mainColor: string;
     sizeRem: number;
     valueInitial?: number;
+    minLength?: number;
     onQuantity: (quantityValue: number) => void;
 }
 
-export const QuantityInput = ({ mainColor, sizeRem, valueInitial, onQuantity }: QuantityInputProps) => {
+export const QuantityInput = ({ mainColor, sizeRem, minLength = undefined, valueInitial, onQuantity }: QuantityInputProps) => {
     const [quantity, setQuantity] = useState(valueInitial || 1)
 
     const handleQuantity = (action: string) => {
         const value = action === 'minus' ? (quantity - 1) : (quantity + 1)
-        setQuantity(value < 1 ? 1 : value)
+        const length = minLength == undefined ? 1 : 0
 
+        setQuantity(value <= 0 ? length : value)
     }
 
     useEffect(() => {
@@ -40,7 +42,7 @@ export const QuantityInput = ({ mainColor, sizeRem, valueInitial, onQuantity }: 
                     width: `${sizeRem}rem`,
                     color: mainColor
                 }}
-                minLength={1}
+                minLength={0}
                 max={20}
                 value={quantity}
                 onChange={() => { }}

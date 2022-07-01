@@ -12,13 +12,16 @@ interface IBagProvider {
 
 type BagContextProps = {
   bagProps: IBagContext[],
-  addBagItems: (item: IProducts, amountItems: number) => void
+  addBagItems: (item: IProducts, amountItems: number) => void,
+  removeBagItems: (item: IProducts) => void
+
 }
 
 export const BagContext = createContext<BagContextProps>(
   {
     bagProps: [],
-    addBagItems: (item: IProducts, amountItems: number) => { }
+    addBagItems: (item: IProducts, amountItems: number) => { },
+    removeBagItems: (item: IProducts) => { }
   })
 
 
@@ -46,8 +49,12 @@ export const BagContextProvider: React.FC<IBagProvider> = ({ children }) => {
     }
   }
 
+  const removeBagItems = (item: IProducts) => {
+    setBagProps(bagProps.filter((bag) => bag.product.id != item.id))
+  }
+
   return (
-    <BagContext.Provider value={{ bagProps, addBagItems }}>
+    <BagContext.Provider value={{ bagProps, addBagItems, removeBagItems }}>
       {children}
     </BagContext.Provider>
   );

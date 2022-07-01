@@ -27,7 +27,7 @@ export const MessageContext = createContext<MessageContextProps>(
 export const MessageContextProvider: React.FC<IMessageProvider> = ({ children }) => {
   const [messageProps, setMessageProps] = useState<IMessageContext>({
     message: '',
-    typeMessage: 'info',
+    typeMessage: 'success',
     showMessage: false
   })
 

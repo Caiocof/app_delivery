@@ -7,12 +7,11 @@ interface HeaderPagesProps {
     title?: string;
     navigateRoute?: string;
     titleColor?: string;
-    rightButton?: boolean;
     backgroundColor?: string;
 }
 
 
-export const HeaderPages = ({ iconColor, title, backgroundColor, rightButton, titleColor, navigateRoute }: HeaderPagesProps) => {
+export const HeaderPages = ({ iconColor, title, backgroundColor, titleColor, navigateRoute }: HeaderPagesProps) => {
     const navigate = useNavigate()
 
 
@@ -21,22 +20,6 @@ export const HeaderPages = ({ iconColor, title, backgroundColor, rightButton, ti
             navigate(navigateRoute)
         }
 
-    }
-
-    const handleRightButton = () => {
-        if (rightButton) {
-            return (
-                <button
-                    className="buttonRightHeaderPages"
-                    style={{ backgroundColor: backgroundColor }}
-                >
-                    <Heart size={20} weight="bold" color={iconColor || '#1B1B1B'} />
-                </button>
-            );
-        }
-        return (
-            <div className="buttonRightHeaderPages"></div>
-        );
     }
 
     return (
@@ -49,7 +32,7 @@ export const HeaderPages = ({ iconColor, title, backgroundColor, rightButton, ti
                 <ArrowLeft size={20} weight="bold" color={iconColor || '#1B1B1B'} />
             </button>
             <p className="titleHeaderPages" style={{ color: titleColor || '#1B1B1B' }}>{title}</p>
-            {handleRightButton()}
+            <div className="buttonRightHeaderPages"></div>
         </div>
     );
 }

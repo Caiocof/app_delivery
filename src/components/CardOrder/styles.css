@@ -4,7 +4,7 @@
   height: 5.37rem;
   flex-direction: row;
   align-items: center;
-  gap: 17px;
+  justify-content: space-between;
   margin-bottom: 23px;
 }
 
@@ -12,7 +12,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .cardOrderImg>img {
@@ -43,8 +42,4 @@
   font-size: 1rem;
   line-height: 1.21rem;
   color: #1B1B1B;
-}
-
-.cardOrderAmount {
-  margin-left: 10px;
 }
