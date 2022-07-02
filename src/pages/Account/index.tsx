@@ -4,7 +4,7 @@ import { Button } from '../../components/Button';
 import { DivisionItems } from '../../components/DivisionItems';
 import { HeaderPages } from '../../components/HeaderPages';
 import { InputForm } from '../../components/InputForm';
-import { Message } from '../../components/Message';
+import { Message } from '../../components/Alerts/Snackbar';
 import { MessageContext } from '../../contexts/messageContexts'
 import { login } from '../../service/users';
 import { mainColor } from '../../utils';

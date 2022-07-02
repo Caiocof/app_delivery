@@ -13,7 +13,7 @@ import { Button } from '../../components/Button';
 
 import './styles.css'
 import { MessageContext } from '../../contexts/messageContexts';
-import { Message } from '../../components/Message';
+import { Message } from '../../components/Alerts/Snackbar';
 
 
 export const Products = () => {
