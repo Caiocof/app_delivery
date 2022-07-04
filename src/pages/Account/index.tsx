@@ -1,13 +1,13 @@
 import { FormEvent, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Button';
-import { DivisionItems } from '../../components/DivisionItems';
-import { HeaderPages } from '../../components/HeaderPages';
-import { InputForm } from '../../components/InputForm';
-import { Message } from '../../components/Alerts/Snackbar';
-import { MessageContext } from '../../contexts/messageContexts'
+import { Button } from '@components/Button';
+import { DivisionItems } from '@components/DivisionItems';
+import { HeaderPages } from '@components/HeaderPages';
+import { InputForm } from '@components/InputForm';
+import { Message } from '@components/Alerts/Snackbar';
+import { MessageContext } from '@contexts/messageContexts'
 import { login } from '../../service/users';
-import { mainColor } from '../../utils';
+import { mainColor } from '@utils/index';
 import './styles.css'
 
 export const PageLogin = () => {

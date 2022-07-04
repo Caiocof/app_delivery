@@ -3,17 +3,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getItemForId } from '../../service/items';
 import { IProducts } from '../../interfaces/products';
 
-import { BagContext } from '../../contexts/bagContexts';
+import { BagContext } from '@contexts/bagContexts';
 
-import { HeaderPages } from '../../components/HeaderPages';
-import { burgerImage, formatMoney, mainColor } from '../../utils';
-import { DivisionItems } from '../../components/DivisionItems';
-import { QuantityInput } from '../../components/QuantityInput';
-import { Button } from '../../components/Button';
+import { HeaderPages } from '@components/HeaderPages';
+import { burgerImage, formatMoney, mainColor } from '@utils/index';
+import { DivisionItems } from '@components/DivisionItems';
+import { QuantityInput } from '@components/QuantityInput';
+import { Button } from '@components/Button';
 
 import './styles.css'
-import { MessageContext } from '../../contexts/messageContexts';
-import { Message } from '../../components/Alerts/Snackbar';
+import { MessageContext } from '@contexts/messageContexts';
+import { Message } from '@components/Alerts/Snackbar';
 
 
 export const Products = () => {

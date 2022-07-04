@@ -1,10 +1,10 @@
 import { Bag, ClipboardText, ForkKnife, GearSix, SignOut, X } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Button';
-import { DivisionItems } from '../../components/DivisionItems';
+import { Button } from '@components/Button';
+import { DivisionItems } from '@components/DivisionItems';
 import { IUser } from '../../interfaces/user';
-import { formatDate, mainColor } from '../../utils';
+import { formatDate, mainColor } from '@utils/index';
 import './styles.css'
 
 export const MenuBar = () => {
