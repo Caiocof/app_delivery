@@ -1,7 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { BagContext } from '../../contexts/bagContexts';
+import { MessageContext } from '../../contexts/messageContexts';
 import { IProducts } from '../../interfaces/products';
 import { burgerImage, formatMoney } from '../../utils';
+import { CustomDialog } from '../Alerts/Dialog';
+import { Message } from '../Alerts/Snackbar';
 import { DivisionItems } from '../DivisionItems';
 import { QuantityInput } from '../QuantityInput';
 import './styles.css'
@@ -10,25 +13,22 @@ interface CardOrderProps {
   product: IProducts;
   amountProduct: number;
   mainColor: string;
+  onQuantity: (quantity: number) => void;
 }
 
-export const CardOrder = ({
-  product,
-  amountProduct,
-  mainColor,
-}: CardOrderProps) => {
-
-  const { addBagItems, removeBagItems } = useContext(BagContext)
+export const CardOrder = ({ product, amountProduct, mainColor, onQuantity }: CardOrderProps) => {
   const [price, setPrice] = useState(product.price || 0)
+  const [amountProductState, setAmountProductState] = useState(amountProduct)
 
   const handleOnQuantity = (quantity: number) => {
-    if (quantity == 0) {
-      removeBagItems(product)
-      return 
-    }
     setPrice(product.price * quantity)
-    addBagItems(product, quantity)
+    onQuantity(quantity)
   }
+
+  useEffect(() => {
+    handleOnQuantity(amountProduct)
+  }, [amountProduct])
+
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Snackbar, AlertProps, Alert } from '@mui/material'
 import { useState, forwardRef, useEffect, useContext } from 'react'
 import Slide, { SlideProps } from '@mui/material/Slide';
-import { MessageContext } from '../../contexts/messageContexts';
+import { MessageContext } from '../../../contexts/messageContexts';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
 function TransitionUp(props: TransitionProps) {
@@ -28,9 +28,9 @@ export const Message = ({ message, typeMessage, onVisibleChange, show = false }:
   const { setMessageProps } = useContext(MessageContext)
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return
-    }
+    // if (reason === 'clickaway') {
+    //   return
+    // }
     setOpen(false)
     setMessageProps({
       message: '',

@@ -3,19 +3,19 @@ import { Button } from "../../../../components/Button";
 import { DivisionItems } from "../../../../components/DivisionItems";
 import { HeaderPages } from "../../../../components/HeaderPages";
 import { InputForm } from "../../../../components/InputForm";
-import { Message } from "../../../../components/Alerts/Snackbar";
 import { mainColor } from "../../../../utils";
 
 import '../../styles.css'
 
 export const PageForget = () => {
-
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
+        console.log('recuperar senha');
+
     }
 
-
     return (
+
         <div className="AccountContainer">
             <div className="accountHeader">
                 <HeaderPages
@@ -54,5 +54,6 @@ export const PageForget = () => {
                 />
             </form>
         </div>
+
     );
 }

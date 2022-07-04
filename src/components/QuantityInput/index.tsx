@@ -25,6 +25,10 @@ export const QuantityInput = ({ mainColor, sizeRem, minLength = undefined, value
         onQuantity(quantity)
     }, [quantity])
 
+    useEffect(() => {
+        setQuantity(valueInitial || 1)
+    }, [valueInitial])
+
     return (
         <div className="quantityContainer">
             <span
