@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactElement, SetStateAction, useState } from 'react'
-import { typeMessageProps } from '@components/Alerts/Snackbar';
+import { typeMessageProps } from '../components/Alerts/Snackbar';
 
 interface IMessageContext {
   message: string;

@@ -1,14 +1,14 @@
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageContext } from '@contexts/messageContexts'
-import { Banner } from '@components/Banner';
-import { GridItems } from '@components/GridItems';
-import { MenuBurger } from '@components/MenuBurger';
-import { Message } from '@components/Alerts/Snackbar';
-import { SearchInput } from '@components/SearchInput';
+import { MessageContext } from '../../contexts/messageContexts'
+import { Banner } from '../../components/Banner';
+import { GridItems } from '../../components/GridItems';
+import { MenuBurger } from '../../components/MenuBurger';
+import { Message } from '../../components/Alerts/Snackbar';
+import { SearchInput } from '../../components/SearchInput';
 import { getItems } from '../../service/items';
 import { getPromotions } from '../../service/promotions';
-import { bannerImage, bannerImage2, mainColor } from '@utils/index';
+import { bannerImage, bannerImage2, mainColor } from '../../utils';
 
 import './styles.css'
 
