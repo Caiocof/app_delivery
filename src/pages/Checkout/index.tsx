@@ -1,7 +1,8 @@
 import { CaretRight, CreditCard, CurrencyCircleDollar, MapPin } from 'phosphor-react';
-import { FormEvent, useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CustomDialog } from '../../components/Alerts/Dialog';
+import { Message } from '../../components/Alerts/Snackbar';
 import { Button } from '../../components/Button';
 import { CardOrder } from '../../components/CardOrder';
 import { DivisionItems } from '../../components/DivisionItems';
@@ -9,8 +10,10 @@ import { HeaderPages } from '../../components/HeaderPages';
 import { InputForm } from '../../components/InputForm';
 import { BagContext } from '../../contexts/bagContexts';
 import { MessageContext } from '../../contexts/messageContexts';
-import { IAddress } from '../../interfaces/address';
+import { IOrder } from '../../interfaces/order';
 import { IProducts } from '../../interfaces/products';
+import { IUser } from '../../interfaces/user';
+import { registerOrder } from '../../service/order';
 import { getShippingForDistrict } from '../../service/shipping';
 import { formatMoney, mainColor } from '../../utils';
 import './styles.css'
@@ -21,12 +24,15 @@ export const Checkout = () => {
   const { messageProps, setMessageProps } = useContext(MessageContext)
 
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({} as IProducts)
+  const [userLogged, setUserLogged] = useState<IUser>()
+
   const [buttonSelected, setButtonSelected] = useState<'money' | 'card'>('money')
+  const [showDialog, setShowDialog] = useState(false)
   const [addressShipping, setAddressShipping] = useState('')
   const [valueShipping, setValueShipping] = useState(0)
-  const [showDialog, setShowDialog] = useState(false)
   const [valueTotal, setValueTotal] = useState(0)
   const [subTotal, setSubTotal] = useState(0)
+  const [theChange, setTheChange] = useState(0)
 
   const handleOnQuantity = (product: IProducts, quantity: number) => {
     if (quantity == 0) {
@@ -47,9 +53,24 @@ export const Checkout = () => {
     })
   }
 
-  const handleOrderSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    
+  const handleOrderSubmit = () => {
+    if (userLogged) {
+      const item_order = {
+        user_id: userLogged?.id,
+        address: addressShipping,
+        method_payment: buttonSelected,
+        the_change: theChange,
+        items: bagProps,
+        shipping: valueShipping,
+        sub_total: subTotal,
+        created_at: new Date()
+      }
+      registerOrder(item_order)
+        .then(() => {
+          navigate('/')
+        }).catch((error) => console.log(error))
+    }
+
 
   }
 
@@ -75,6 +96,10 @@ export const Checkout = () => {
 
   useEffect(() => {
     handleSetAddressShipping()
+    if (localStorage.getItem('user')) {
+      const userStorage = JSON.parse(localStorage.getItem('user') || '');
+      setUserLogged(userStorage);
+    }
   }, [])
 
   useEffect(() => {
@@ -93,6 +118,11 @@ export const Checkout = () => {
           handleOnQuantity(selectedProduct, 1)
           setSelectedProduct({} as IProducts);
         }}
+      />
+      <Message
+        message={messageProps.message}
+        typeMessage={messageProps.typeMessage}
+        show={messageProps.showMessage}
       />
       <div className="checkoutContainer">
         <header className="checkoutHeader">
@@ -131,7 +161,10 @@ export const Checkout = () => {
             </button>
             <button className={buttonSelected == 'card'
               ? 'buttonSelected' : 'buttonNotSelected'}
-              onClick={() => setButtonSelected('card')}
+              onClick={() => {
+                setButtonSelected('card');
+                setTheChange(0)
+              }}
             >
               <div className='checkoutIconPayment'>
                 <CreditCard size={32} />
@@ -145,6 +178,8 @@ export const Checkout = () => {
               <InputForm
                 inputType='number'
                 focusColor={mainColor}
+                value={theChange}
+                onChange={(event) => setTheChange(+event.target.value)}
                 backgroundColor='#F9F9FB'
               />
             </div>}
@@ -193,7 +228,7 @@ export const Checkout = () => {
                 buttonColor={mainColor}
                 title='Finalizar Pedido'
                 disabled={bagProps.length > 0 ? false : true}
-                onClick={handleOrderSubmit}
+                isClicked={handleOrderSubmit}
               />
             </div>
           </div>

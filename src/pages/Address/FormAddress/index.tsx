@@ -5,6 +5,7 @@ import { DivisionItems } from '../../../components/DivisionItems'
 import { HeaderPages } from '../../../components/HeaderPages'
 import { InputForm } from '../../../components/InputForm'
 import { IAddress } from '../../../interfaces/address'
+import { IUser } from '../../../interfaces/user'
 import { getAddressForId } from '../../../service/address'
 import { mainColor } from '../../../utils'
 import '../styles.css'
@@ -15,8 +16,7 @@ interface AddressProps {
 }
 
 export const AddressForm = ({ address }: AddressProps) => {
-  const user = JSON.parse(localStorage.getItem('user') || '')
-
+  const [userLogged, setUserLogged] = useState<IUser>()
   const [addressData, setAddressData] = useState({
     user_id: "",
     zipCode: "",
@@ -50,6 +50,15 @@ export const AddressForm = ({ address }: AddressProps) => {
         ).catch(error => console.log(error))
     }
   }, [address_id])
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      const userStorage = JSON.parse(localStorage.getItem('user') || '');
+      setUserLogged(userStorage);
+    }
+  }, [])
+
+
 
   return (
     <div className="addressContainer">

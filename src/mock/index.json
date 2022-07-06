@@ -83,9 +83,9 @@
   "address": [
     {
       "id": 1,
-      "zipCode": "45053555",
+      "zipCode": "45000000",
       "street": "Rua H",
-      "number": "600",
+      "number": "15233",
       "district": "Cidade Modelo",
       "city": "Vitória da Conquista",
       "state": "Bahia",
@@ -94,43 +94,10 @@
     },
     {
       "id": 2,
-      "zipCode": "45053555",
+      "zipCode": "45000000",
       "street": "Rua B",
-      "number": "700",
-      "district": "Cidade Modelo",
-      "city": "Vitória da Conquista",
-      "state": "Bahia",
-      "complements": "Casa A",
-      "user_id": 1
-    },
-    {
-      "id": 3,
-      "zipCode": "45053555",
-      "street": "Rua B",
-      "number": "700",
-      "district": "Cidade Modelo",
-      "city": "Vitória da Conquista",
-      "state": "Bahia",
-      "complements": "Casa A",
-      "user_id": 1
-    },
-    {
-      "id": 4,
-      "zipCode": "45053555",
-      "street": "Rua B",
-      "number": "700",
-      "district": "Cidade Modelo",
-      "city": "Vitória da Conquista",
-      "state": "Bahia",
-      "complements": "Casa A",
-      "user_id": 1
-    },
-    {
-      "id": 5,
-      "zipCode": "45053555",
-      "street": "Rua B",
-      "number": "700",
-      "district": "Cidade Modelo",
+      "number": "5689",
+      "district": "Brasil",
       "city": "Vitória da Conquista",
       "state": "Bahia",
       "complements": "Casa A",
@@ -141,7 +108,37 @@
     {
       "id": 1,
       "district": "Cidade Modelo",
-      "price": 10
+      "price": 8
+    },
+    {
+      "id": 2,
+      "district": "Brasil",
+      "price": 2
+    }
+  ],
+  "orders": [
+    {
+      "user_id": 1,
+      "address": "5689 - Rua B - Brasil",
+      "method_payment": "card",
+      "the_change": 0,
+      "items": [
+        {
+          "product": {
+            "url_image": "",
+            "category": "tradicional",
+            "name": "Monster2 Burger",
+            "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
+            "price": 50,
+            "id": 4
+          },
+          "amount": 2
+        }
+      ],
+      "shipping": 2,
+      "sub_total": 100,
+      "created_at": "2022-07-06T20:34:06.465Z",
+      "id": 1
     }
   ]
 }

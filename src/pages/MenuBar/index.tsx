@@ -44,22 +44,6 @@ export const MenuBar = () => {
         );
     }
 
-    const handleFooter = () => {
-        if (userLogged) {
-            return (
-                <footer className="footer" onClick={handleLogout}>
-                    <div className='icon'>
-                        <SignOut color='#6A7D8B' size={17} weight="bold" />
-                    </div>
-                    <p className="menuListName">Sair</p>
-                </footer>
-            );
-        }
-        return (
-            <footer className="footer"></footer>
-        );
-    }
-
     return (
         <div className="menuContainer">
             <div className="menuHeader">
@@ -93,21 +77,32 @@ export const MenuBar = () => {
                         </div>
                         <div className="menuListName">Sacola</div>
                     </li>
-                    <li className="menuList">
-                        <div className="menuListIcon">
-                            <ClipboardText size={20} weight="bold" color='#6A7D8B' />
-                        </div>
-                        <div className="menuListName">Meus Pedidos</div>
-                    </li>
-                    <li className="menuList">
-                        <div className="menuListIcon">
-                            <GearSix size={20} weight="bold" color='#6A7D8B' />
-                        </div>
-                        <div className="menuListName">Configurações</div>
-                    </li>
+                    {userLogged &&
+                        <>
+                            <li className="menuList">
+                                <div className="menuListIcon">
+                                    <ClipboardText size={20} weight="bold" color='#6A7D8B' />
+                                </div>
+                                <div className="menuListName">Meus Pedidos</div>
+                            </li>
+                            <li className="menuList">
+                                <div className="menuListIcon">
+                                    <GearSix size={20} weight="bold" color='#6A7D8B' />
+                                </div>
+                                <div className="menuListName">Configurações</div>
+                            </li>
+                        </>
+                    }
                 </ul>
             </div>
-            {handleFooter()}
+            {userLogged &&
+                <footer className="footer" onClick={handleLogout}>
+                    <div className='icon'>
+                        <SignOut color='#6A7D8B' size={17} weight="bold" />
+                    </div>
+                    <p className="menuListName">Sair</p>
+                </footer>
+            }
         </div>
     );
 }
