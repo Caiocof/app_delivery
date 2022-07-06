@@ -1,27 +1,26 @@
 import { Eye, EyeSlash } from "phosphor-react";
-import { InputHTMLAttributes, useEffect, useState } from 'react';
+import { InputHTMLAttributes, useState, useEffect } from 'react';
 import './styles.css'
 
 interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
     mainColor: string;
-    placeholder: string;
     inputType: string;
+    placeholder?: string;
     backgroundColor?: string;
+    maxWidthWithRem?: number;
 }
 export const InputForm = ({
     mainColor,
     backgroundColor,
     placeholder,
     inputType,
+    maxWidthWithRem,
     ...rest
 }: InputFormProps) => {
 
     const [focused, setFocused] = useState(false)
-    const [inputValue, setInputValue] = useState('')
     const [typeInput, setTypeInput] = useState(inputType)
     const [showPassword, setShowPassword] = useState(false)
-
-
 
 
     const handleIconPassword = () => {
@@ -41,21 +40,26 @@ export const InputForm = ({
 
     }
 
-
     return (
         <div
             className='inputContainer'
-            style={{ borderColor: focused ? mainColor : '#FFF' }}>
+            style={maxWidthWithRem ? {
+                borderColor: focused ? mainColor : '#FFF',
+                maxWidth: `${(maxWidthWithRem + 0.5)}rem`
+            } : { borderColor: focused ? mainColor : '#FFF' }}>
             <input
+                //value={inputValue}
+                //onChange={(e) => setInputValue(e.target.value)}
                 {...rest}
                 className="input"
                 placeholder={placeholder}
                 type={typeInput}
-                style={{ backgroundColor: backgroundColor }}
+                style={maxWidthWithRem ? {
+                    backgroundColor: backgroundColor,
+                    maxWidth: `${maxWidthWithRem}rem`
+                } : { backgroundColor: backgroundColor }}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
             />
             {handleIconPassword()}
         </div>

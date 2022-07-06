@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { CustomDialog } from '../../components/Alerts/Dialog'
 import { Message } from '../../components/Alerts/Snackbar'
 import { Button } from '../../components/Button'
@@ -8,14 +9,18 @@ import { HeaderPages } from '../../components/HeaderPages'
 import { BagContext } from '../../contexts/bagContexts'
 import { MessageContext } from '../../contexts/messageContexts'
 import { IProducts } from '../../interfaces/products'
+import { getShippingForDistrict } from '../../service/shipping'
 import { formatMoney, mainColor } from '../../utils'
 import './styles.css'
 
 export const Bag = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext)
   const { messageProps, setMessageProps } = useContext(MessageContext)
 
-  const [titleButton, setTitleButton] = useState('Selecionar Endereço')
+  const [titleButton, setTitleButton] = useState('')
+  const [valueShipping, setValueShipping] = useState(0)
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({} as IProducts)
   const [showDialog, setShowDialog] = useState(false)
   const [valueTotal, setValueTotal] = useState(0)
@@ -40,14 +45,27 @@ export const Bag = () => {
     })
   }
 
+
   useEffect(() => {
-    setValueTotal(subTotal + 12.50)
+    setValueTotal(subTotal + valueShipping)
     return () => { }
-  }, [subTotal])
+  }, [subTotal, valueShipping])
 
   useEffect(() => {
     setSubTotal(bagProps.reduce((total, item) => total + (item.product.price * item.amount), 0))
   }, [bagProps])
+
+  useEffect(() => {
+    const addressDistrict = location.state
+    if (addressDistrict) {
+      getShippingForDistrict(addressDistrict.district)
+        .then(({ data }) => {
+          setValueShipping(data[0].price)
+          setTitleButton(`Bairro ${addressDistrict.district}`)
+        }).catch(error => console.log(error))
+      navigate(location.pathname, {});
+    }
+  }, [])
 
   return (
     <>
@@ -70,7 +88,7 @@ export const Bag = () => {
       <div className="bagContainer">
         <header className="bagHeader">
           <HeaderPages
-            navigateRoute='/'
+            navigateRoute={'/'}
             title='Sacola'
             iconColor={mainColor}
           />
@@ -103,8 +121,9 @@ export const Bag = () => {
             <Button
               buttonColor='#FFF'
               borderColor={mainColor}
-              title={titleButton}
-              titleColor={mainColor}
+              title={titleButton || 'Selecionar Endereço'}
+              titleColor={titleButton ? '#6A7D8B' : mainColor}
+              isClicked={() => navigate('/address')}
             />
           </div>
           <div className="bagValueTotal">
@@ -114,7 +133,7 @@ export const Bag = () => {
             </div>
             <div className='bagValueShipping'>
               <span>Frete</span>
-              <span>R$12,50</span>
+              <span>{formatMoney(valueShipping)}</span>
             </div>
             <hr />
             <div className='bagTotal'>
@@ -124,6 +143,7 @@ export const Bag = () => {
             <Button
               buttonColor={mainColor}
               title='Continuar'
+              disabled={bagProps.length > 0 ? false : true}
             />
 
           </div>

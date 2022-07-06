@@ -79,5 +79,69 @@
       "last_access": "2022-06-29T09:06:38.067Z",
       "id": 2
     }
+  ],
+  "address": [
+    {
+      "id": 1,
+      "zipCode": "45053555",
+      "street": "Rua H",
+      "number": "600",
+      "district": "Cidade Modelo",
+      "city": "Vitória da Conquista",
+      "state": "Bahia",
+      "complements": "Casa B",
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "zipCode": "45053555",
+      "street": "Rua B",
+      "number": "700",
+      "district": "Cidade Modelo",
+      "city": "Vitória da Conquista",
+      "state": "Bahia",
+      "complements": "Casa A",
+      "user_id": 1
+    },
+    {
+      "id": 3,
+      "zipCode": "45053555",
+      "street": "Rua B",
+      "number": "700",
+      "district": "Cidade Modelo",
+      "city": "Vitória da Conquista",
+      "state": "Bahia",
+      "complements": "Casa A",
+      "user_id": 1
+    },
+    {
+      "id": 4,
+      "zipCode": "45053555",
+      "street": "Rua B",
+      "number": "700",
+      "district": "Cidade Modelo",
+      "city": "Vitória da Conquista",
+      "state": "Bahia",
+      "complements": "Casa A",
+      "user_id": 1
+    },
+    {
+      "id": 5,
+      "zipCode": "45053555",
+      "street": "Rua B",
+      "number": "700",
+      "district": "Cidade Modelo",
+      "city": "Vitória da Conquista",
+      "state": "Bahia",
+      "complements": "Casa A",
+      "user_id": 1
+    }
+  ],
+  "shipping": [
+    {
+      "id": 1,
+      "district": "Cidade Modelo",
+      "price": 10
+    }
   ]
 }

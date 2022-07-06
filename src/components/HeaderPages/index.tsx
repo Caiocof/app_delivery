@@ -17,7 +17,7 @@ export const HeaderPages = ({ iconColor, title, backgroundColor, titleColor, nav
 
     const handleNavigate = () => {
         if (navigateRoute) {
-            navigate(navigateRoute)
+            navigate(-1)
         }
 
     }

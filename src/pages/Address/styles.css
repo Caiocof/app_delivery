@@ -1,0 +1,76 @@
+.addressContainer {
+  display: flex;
+  padding: 25px 1.5rem;
+  flex-direction: column;
+  min-height: 790px;
+  max-height: 100vh;
+  background-color: #FFF;
+}
+
+.addressHeader {
+  margin-top: 1.87rem;
+}
+
+.addressDivisionHeader {
+  margin-top: 10px;
+}
+
+.addressPinName{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+}
+
+.addressListItems {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.addressListItems li {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  gap: 35px;
+
+}
+
+.addressListItems li p {
+  max-width: 25ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.addressListItems li button {
+  border: none;
+  background: none;
+}
+
+.addressItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addressFooter {
+  margin-top: 5px;
+}
+
+
+/* CSS FORM ADDRESS */
+.addressForm label {
+  display: inline-block;
+  margin: 25px 0 8px 3px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+}
+
+.addressStreetNumber {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
