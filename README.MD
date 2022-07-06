@@ -21,9 +21,11 @@ Project developed for practice study React/TypeScript
 * &#9989; View products
 * &#10060; Create, view and edit company
 * &#10060; Register products
-* &#10060; Create and edit user
-* &#10060; Create, view and edit address
-* &#10060; Create, view and monitor orders
+* &#9989; Create user
+* &#10060; Edit user
+* &#9989; Create, list and edit address
+* &#9989; Create orders
+* &#10060; View orders
 
 
 ## Run Project
