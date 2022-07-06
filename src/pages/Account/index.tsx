@@ -71,7 +71,7 @@ export const PageLogin = () => {
                 <form onSubmit={handleSubmit} className="accountForm">
                     <div>
                         <InputForm
-                            mainColor={mainColor}
+                            focusColor={mainColor}
                             backgroundColor='#F9F9FB'
                             placeholder='Digite seu e-mail'
                             inputType='email'
@@ -81,7 +81,7 @@ export const PageLogin = () => {
                     </div>
                     <div>
                         <InputForm
-                            mainColor={mainColor}
+                            focusColor={mainColor}
                             backgroundColor='#F9F9FB'
                             placeholder='Digite sua senha'
                             inputType='password'

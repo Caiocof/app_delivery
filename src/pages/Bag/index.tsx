@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect, FormEvent } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { CustomDialog } from '../../components/Alerts/Dialog'
 import { Message } from '../../components/Alerts/Snackbar'
@@ -45,6 +45,12 @@ export const Bag = () => {
     })
   }
 
+  const handleOrderSubmit = () => {
+    console.log('teste');
+
+    navigate('/checkout')
+  }
+
 
   useEffect(() => {
     setValueTotal(subTotal + valueShipping)
@@ -56,8 +62,8 @@ export const Bag = () => {
   }, [bagProps])
 
   useEffect(() => {
-    const addressDistrict = location.state
-    if (addressDistrict) {
+    const addressDistrict = location.state as { district?: string; }
+    if (addressDistrict?.district) {
       getShippingForDistrict(addressDistrict.district)
         .then(({ data }) => {
           setValueShipping(data[0].price)
@@ -143,9 +149,8 @@ export const Bag = () => {
             <Button
               buttonColor={mainColor}
               title='Continuar'
-              disabled={bagProps.length > 0 ? false : true}
+              isClicked={handleOrderSubmit}
             />
-
           </div>
         </div>
 

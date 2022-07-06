@@ -71,7 +71,7 @@ export const AddressForm = ({ address }: AddressProps) => {
         <InputForm
           defaultValue={addressData.zipCode}
           inputType='text'
-          mainColor={mainColor}
+          focusColor={mainColor}
           placeholder='00000-000'
           backgroundColor='#F9F9FB'
           name='zipCode'
@@ -84,7 +84,7 @@ export const AddressForm = ({ address }: AddressProps) => {
             <InputForm
               defaultValue={addressData.street}
               inputType='text'
-              mainColor={mainColor}
+              focusColor={mainColor}
               placeholder='Digite aqui a rua'
               maxWidthWithRem={11}
               backgroundColor='#F9F9FB'
@@ -97,7 +97,7 @@ export const AddressForm = ({ address }: AddressProps) => {
             <label htmlFor="number">Número</label>
             <InputForm
               inputType='number'
-              mainColor={mainColor}
+              focusColor={mainColor}
               placeholder='Digite o número'
               maxWidthWithRem={10}
               backgroundColor='#F9F9FB'
@@ -111,7 +111,7 @@ export const AddressForm = ({ address }: AddressProps) => {
         <label htmlFor="district">Bairro</label>
         <InputForm
           inputType='text'
-          mainColor={mainColor}
+          focusColor={mainColor}
           placeholder='Digite aqui o bairro'
           backgroundColor='#F9F9FB'
           name='district'
@@ -122,7 +122,7 @@ export const AddressForm = ({ address }: AddressProps) => {
         <label htmlFor="city">Cidade</label>
         <InputForm
           inputType='text'
-          mainColor={mainColor}
+          focusColor={mainColor}
           placeholder='Digite aqui a cidade'
           backgroundColor='#F9F9FB'
           name='city'
@@ -133,7 +133,7 @@ export const AddressForm = ({ address }: AddressProps) => {
         <label htmlFor="state">Estado</label>
         <InputForm
           inputType='text'
-          mainColor={mainColor}
+          focusColor={mainColor}
           placeholder='Digite aqui o estado'
           backgroundColor='#F9F9FB'
           name='state'
@@ -144,7 +144,7 @@ export const AddressForm = ({ address }: AddressProps) => {
         <label htmlFor="complements">Complemento</label>
         <InputForm
           inputType='text'
-          mainColor={mainColor}
+          focusColor={mainColor}
           placeholder='Digite aqui o complemento'
           backgroundColor='#F9F9FB'
           name='complements'

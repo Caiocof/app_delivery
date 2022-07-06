@@ -3,14 +3,14 @@ import { InputHTMLAttributes, useState, useEffect } from 'react';
 import './styles.css'
 
 interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
-    mainColor: string;
+    focusColor: string;
     inputType: string;
     placeholder?: string;
     backgroundColor?: string;
     maxWidthWithRem?: number;
 }
 export const InputForm = ({
-    mainColor,
+    focusColor,
     backgroundColor,
     placeholder,
     inputType,
@@ -44,9 +44,9 @@ export const InputForm = ({
         <div
             className='inputContainer'
             style={maxWidthWithRem ? {
-                borderColor: focused ? mainColor : '#FFF',
+                borderColor: focused ? focusColor : '#FFF',
                 maxWidth: `${(maxWidthWithRem + 0.5)}rem`
-            } : { borderColor: focused ? mainColor : '#FFF' }}>
+            } : { borderColor: focused ? focusColor : '#FFF' }}>
             <input
                 //value={inputValue}
                 //onChange={(e) => setInputValue(e.target.value)}

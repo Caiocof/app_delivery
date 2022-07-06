@@ -68,7 +68,7 @@ export const PageRegister = () => {
             <form onSubmit={handleSubmit} className="accountForm">
                 <div>
                     <InputForm
-                        mainColor={mainColor}
+                        focusColor={mainColor}
                         backgroundColor='#F9F9FB'
                         placeholder='Digite seu nome'
                         inputType='text'
@@ -78,7 +78,7 @@ export const PageRegister = () => {
                 </div>
                 <div>
                     <InputForm
-                        mainColor={mainColor}
+                        focusColor={mainColor}
                         backgroundColor='#F9F9FB'
                         placeholder='Digite seu e-mail'
                         inputType='e-mail'
@@ -88,7 +88,7 @@ export const PageRegister = () => {
                 </div>
                 <div>
                     <InputForm
-                        mainColor={mainColor}
+                        focusColor={mainColor}
                         backgroundColor='#F9F9FB'
                         placeholder='Digite sua senha'
                         inputType='password'
