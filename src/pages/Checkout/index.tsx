@@ -49,7 +49,7 @@ export const Checkout = () => {
 
   const handleOrderSubmit = (event: FormEvent) => {
     event.preventDefault()
-
+    
 
   }
 

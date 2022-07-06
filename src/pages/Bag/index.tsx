@@ -10,6 +10,7 @@ import { BagContext } from '../../contexts/bagContexts'
 import { MessageContext } from '../../contexts/messageContexts'
 import { IAddress } from '../../interfaces/address'
 import { IProducts } from '../../interfaces/products'
+import { IUser } from '../../interfaces/user'
 import { getShippingForDistrict } from '../../service/shipping'
 import { formatMoney, mainColor } from '../../utils'
 import './styles.css'
@@ -20,6 +21,7 @@ export const Bag = () => {
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext)
   const { messageProps, setMessageProps } = useContext(MessageContext)
 
+  const [userLogged, setUserLogged] = useState<IUser>()
   const [addressShipping, setAddressShipping] = useState('')
   const [valueShipping, setValueShipping] = useState(0)
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({} as IProducts)
@@ -47,7 +49,14 @@ export const Bag = () => {
   }
 
   const handleOrderSubmit = () => {
-    if (!valueShipping) {
+    if (!userLogged) {
+      setMessageProps({
+        message: 'Realize login para continuar!',
+        typeMessage: 'warning',
+        showMessage: true
+      })
+      return
+    } else if (!valueShipping) {
       setMessageProps({
         message: 'Selecione o endereço de entrega!',
         typeMessage: 'warning',
@@ -81,6 +90,10 @@ export const Bag = () => {
 
   useEffect(() => {
     handleSetAddressShipping()
+    if (localStorage.getItem('user')) {
+      let userStorage = JSON.parse(localStorage.getItem('user') || '');
+      setUserLogged(userStorage);
+    }
   }, [])
 
   return (
@@ -132,16 +145,18 @@ export const Bag = () => {
               );
             })}
           </div>
-          <div className="bagShipping">
-            <span>Calcular frete</span>
-            <Button
-              buttonColor='#FFF'
-              borderColor={mainColor}
-              title={addressShipping || 'Selecionar Endereço'}
-              titleColor={addressShipping ? '#6A7D8B' : mainColor}
-              isClicked={() => navigate('/address', { state: { origin: '/bag' } })}
-            />
-          </div>
+          {userLogged &&
+            <div className="bagShipping">
+              <span>Calcular frete</span>
+              <Button
+                buttonColor='#FFF'
+                borderColor={mainColor}
+                title={addressShipping || 'Selecionar Endereço'}
+                titleColor={addressShipping ? '#6A7D8B' : mainColor}
+                isClicked={() => navigate('/address', { state: { origin: '/bag' } })}
+              />
+            </div>
+          }
           <div className="bagValueTotal">
             <div className='bagSubtotal'>
               <span>Subtotal</span>
