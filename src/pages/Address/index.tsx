@@ -1,5 +1,5 @@
 import { MouseEvent, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Typography from '@mui/material/Typography';
 import { DotsThreeVertical, MapPin, PencilSimpleLine, Trash } from 'phosphor-react'
 import { DivisionItems } from '../../components/DivisionItems'
@@ -14,6 +14,7 @@ import './styles.css'
 
 export const Address = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [address, setAddress] = useState<IAddress[]>()
   const user = JSON.parse(localStorage.getItem('user') || '')
@@ -47,6 +48,14 @@ export const Address = () => {
         })
         .catch((error) => console.log(error)
         )
+    }
+  }
+
+  const handleAddressSelected = (address: IAddress) => {
+    const pathLocation = location.state as { origin?: string }
+    if (address && pathLocation?.origin) {
+      localStorage.setItem('addressShipping', JSON.stringify(address))
+      navigate(pathLocation?.origin)
     }
   }
 
@@ -97,9 +106,7 @@ export const Address = () => {
               return (
                 <li key={index}>
                   <div className="addressItem">
-                    <div className='addressPinName' onClick={() =>
-                      navigate('/bag', { state: { district: item.district } })
-                    }>
+                    <div className='addressPinName' onClick={() => handleAddressSelected(item)}>
                       <MapPin size={32} color={mainColor} />
                       <p>{item.number} - {item.street} - {item.district}</p>
                     </div>

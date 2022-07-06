@@ -8,6 +8,7 @@ import { DivisionItems } from '../../components/DivisionItems'
 import { HeaderPages } from '../../components/HeaderPages'
 import { BagContext } from '../../contexts/bagContexts'
 import { MessageContext } from '../../contexts/messageContexts'
+import { IAddress } from '../../interfaces/address'
 import { IProducts } from '../../interfaces/products'
 import { getShippingForDistrict } from '../../service/shipping'
 import { formatMoney, mainColor } from '../../utils'
@@ -15,11 +16,11 @@ import './styles.css'
 
 export const Bag = () => {
   const navigate = useNavigate()
-  const location = useLocation()
+
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext)
   const { messageProps, setMessageProps } = useContext(MessageContext)
 
-  const [titleButton, setTitleButton] = useState('')
+  const [addressShipping, setAddressShipping] = useState('')
   const [valueShipping, setValueShipping] = useState(0)
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({} as IProducts)
   const [showDialog, setShowDialog] = useState(false)
@@ -46,11 +47,28 @@ export const Bag = () => {
   }
 
   const handleOrderSubmit = () => {
-    console.log('teste');
+    if (!valueShipping) {
+      setMessageProps({
+        message: 'Selecione o endereço de entrega!',
+        typeMessage: 'warning',
+        showMessage: true
+      })
+      return
+    }
 
     navigate('/checkout')
   }
 
+  const handleSetAddressShipping = () => {
+    if (localStorage.getItem('addressShipping')) {
+      const address = JSON.parse(localStorage.getItem('addressShipping') || '')
+      getShippingForDistrict(address.district)
+        .then(({ data }) => {
+          setValueShipping(data[0].price)
+          setAddressShipping(`${address.number} - ${address.street} - ${address.district}`)
+        }).catch(error => console.log(error))
+    }
+  }
 
   useEffect(() => {
     setValueTotal(subTotal + valueShipping)
@@ -62,15 +80,7 @@ export const Bag = () => {
   }, [bagProps])
 
   useEffect(() => {
-    const addressDistrict = location.state as { district?: string; }
-    if (addressDistrict?.district) {
-      getShippingForDistrict(addressDistrict.district)
-        .then(({ data }) => {
-          setValueShipping(data[0].price)
-          setTitleButton(`Bairro ${addressDistrict.district}`)
-        }).catch(error => console.log(error))
-      navigate(location.pathname, {});
-    }
+    handleSetAddressShipping()
   }, [])
 
   return (
@@ -127,9 +137,9 @@ export const Bag = () => {
             <Button
               buttonColor='#FFF'
               borderColor={mainColor}
-              title={titleButton || 'Selecionar Endereço'}
-              titleColor={titleButton ? '#6A7D8B' : mainColor}
-              isClicked={() => navigate('/address')}
+              title={addressShipping || 'Selecionar Endereço'}
+              titleColor={addressShipping ? '#6A7D8B' : mainColor}
+              isClicked={() => navigate('/address', { state: { origin: '/bag' } })}
             />
           </div>
           <div className="bagValueTotal">
@@ -149,6 +159,7 @@ export const Bag = () => {
             <Button
               buttonColor={mainColor}
               title='Continuar'
+              disabled={bagProps.length ? false : true}
               isClicked={handleOrderSubmit}
             />
           </div>

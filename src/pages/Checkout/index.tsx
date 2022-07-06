@@ -1,6 +1,7 @@
 import { CaretRight, CreditCard, CurrencyCircleDollar, MapPin } from 'phosphor-react';
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CustomDialog } from '../../components/Alerts/Dialog';
 import { Button } from '../../components/Button';
 import { CardOrder } from '../../components/CardOrder';
 import { DivisionItems } from '../../components/DivisionItems';
@@ -8,21 +9,21 @@ import { HeaderPages } from '../../components/HeaderPages';
 import { InputForm } from '../../components/InputForm';
 import { BagContext } from '../../contexts/bagContexts';
 import { MessageContext } from '../../contexts/messageContexts';
+import { IAddress } from '../../interfaces/address';
 import { IProducts } from '../../interfaces/products';
+import { getShippingForDistrict } from '../../service/shipping';
 import { formatMoney, mainColor } from '../../utils';
 import './styles.css'
 
 export const Checkout = () => {
-  const [buttonSelected, setButtonSelected] = useState<'money' | 'card'>('money')
-
   const navigate = useNavigate()
-  const location = useLocation()
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext)
   const { messageProps, setMessageProps } = useContext(MessageContext)
 
-  const [titleButton, setTitleButton] = useState('')
-  const [valueShipping, setValueShipping] = useState(0)
   const [selectedProduct, setSelectedProduct] = useState<IProducts>({} as IProducts)
+  const [buttonSelected, setButtonSelected] = useState<'money' | 'card'>('money')
+  const [addressShipping, setAddressShipping] = useState('')
+  const [valueShipping, setValueShipping] = useState(0)
   const [showDialog, setShowDialog] = useState(false)
   const [valueTotal, setValueTotal] = useState(0)
   const [subTotal, setSubTotal] = useState(0)
@@ -52,6 +53,17 @@ export const Checkout = () => {
 
   }
 
+  const handleSetAddressShipping = () => {
+    if (localStorage.getItem('addressShipping')) {
+      const address = JSON.parse(localStorage.getItem('addressShipping') || '')
+      getShippingForDistrict(address.district)
+        .then(({ data }) => {
+          setValueShipping(data[0].price)
+          setAddressShipping(`${address.number} - ${address.street} - ${address.district}`)
+        }).catch(error => console.log(error))
+    }
+  }
+
   useEffect(() => {
     setValueTotal(subTotal + valueShipping)
     return () => { }
@@ -61,14 +73,33 @@ export const Checkout = () => {
     setSubTotal(bagProps.reduce((total, item) => total + (item.product.price * item.amount), 0))
   }, [bagProps])
 
+  useEffect(() => {
+    handleSetAddressShipping()
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('addressShipping', '')
+  }, [addressShipping])
+
   return (
     <>
+      <CustomDialog
+        title="Deletar Item"
+        description="Deseja realmente deletar esse item?"
+        showDialog={showDialog}
+        isClicked={handleRemoveItem}
+        onHandleClose={(value) => {
+          setShowDialog(value);
+          handleOnQuantity(selectedProduct, 1)
+          setSelectedProduct({} as IProducts);
+        }}
+      />
       <div className="checkoutContainer">
         <header className="checkoutHeader">
           <HeaderPages
             title='Checkout'
             iconColor={mainColor}
-            navigateRoute='/bag'
+            navigateRoute={bagProps.length ? '/bag' : '/'}
           />
           <DivisionItems
             completed={0}
@@ -77,11 +108,14 @@ export const Checkout = () => {
         </header>
         <div className="checkoutBody">
           <label>Endereço</label>
-          <div className="divAddress">
+          <div
+            className="divAddress"
+            onClick={() => navigate('/address', { state: { origin: '/checkout' } })}
+          >
             <div className="iconAddress">
               <MapPin size={32} color={mainColor || '#1B1B1B'} />
             </div>
-            <p className="textAddress">321 - Rua das Flores - Jardins...</p>
+            <p className="textAddress">{addressShipping}</p>
             <CaretRight size={32} color={mainColor || '#1B1B1B'} />
           </div>
           <label>Tipo de Pagamento</label>
@@ -157,7 +191,7 @@ export const Checkout = () => {
               </div>
               <Button
                 buttonColor={mainColor}
-                title='Continuar'
+                title='Finalizar Pedido'
                 disabled={bagProps.length > 0 ? false : true}
                 onClick={handleOrderSubmit}
               />
