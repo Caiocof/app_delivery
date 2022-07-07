@@ -1,13 +1,12 @@
-import { AxiosPromise } from 'axios'
-import { api } from './api'
+import { AxiosPromise } from 'axios';
+import { api } from './api';
 
 export const getItems = (filters?: string): AxiosPromise => {
-    if (filters) {
-        return api.get(`/items?q=${filters}`)
-    }
-    return api.get('/items')
-}
+  if (filters) {
+    return api.get(`/items?q=${filters}`);
+  }
+  return api.get('/items');
+};
 
-export const getItemForId = (id: number): AxiosPromise => {
-    return api.get(`/items/${id}`)
-}
+export const getItemForId = (id: number): AxiosPromise =>
+  api.get(`/items/${id}`);

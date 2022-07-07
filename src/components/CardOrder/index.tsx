@@ -7,54 +7,76 @@ import { CustomDialog } from '../Alerts/Dialog';
 import { Message } from '../Alerts/Snackbar';
 import { DivisionItems } from '../DivisionItems';
 import { QuantityInput } from '../QuantityInput';
-import './styles.css'
+import './styles.css';
 
 interface CardOrderProps {
   product: IProducts;
   amountProduct: number;
   mainColor: string;
-  onQuantity: (quantity: number) => void;
+  onQuantity?: (quantity: number) => void;
 }
 
-export const CardOrder = ({ product, amountProduct, mainColor, onQuantity }: CardOrderProps) => {
-  const [price, setPrice] = useState(product.price || 0)
-  const [amountProductState, setAmountProductState] = useState(amountProduct)
+export const CardOrder = ({
+  product,
+  amountProduct,
+  mainColor,
+  onQuantity,
+}: CardOrderProps) => {
+  const [price, setPrice] = useState(product.price || 0);
+  const [amountProductState, setAmountProductState] = useState(amountProduct);
 
   const handleOnQuantity = (quantity: number) => {
-    setPrice(product.price * quantity)
-    onQuantity(quantity)
-  }
+    setPrice(product.price * quantity);
+    if (onQuantity) {
+      onQuantity(quantity);
+    }
+  };
 
   useEffect(() => {
-    handleOnQuantity(amountProduct)
-  }, [amountProduct])
-
+    handleOnQuantity(amountProduct);
+  }, [amountProduct]);
 
   return (
     <>
       <div className="cardOrderContainer">
-        <div className='cardOrderImg'>
+        <div className="cardOrderImg">
           <img src={product.url_image || burgerImage} alt="Product Image" />
         </div>
-        <div className='cardOrderProduct'>
-          <span className='titleProduct'>{product.category}</span>
-          <span className='nameProduct'>{product.name}</span>
-          <span className='priceProduct' style={{ color: mainColor }}>{formatMoney(price)}</span>
+        <div className="cardOrderProduct">
+          <span className="titleProduct">{product.category}</span>
+          <span className="nameProduct">{product.name}</span>
+          <span className="priceProduct" style={{ color: mainColor }}>
+            {formatMoney(price)}
+          </span>
         </div>
-        <div className='cardOrderAmount'>
-          <QuantityInput
-            mainColor={mainColor}
-            sizeRem={2.6}
-            minLength={0}
-            valueInitial={amountProduct}
-            onQuantity={handleOnQuantity}
-          />
+        <div className="cardOrderAmount">
+          {onQuantity ? (
+            <QuantityInput
+              mainColor={mainColor}
+              sizeRem={2.6}
+              minLength={0}
+              valueInitial={amountProduct}
+              onQuantity={handleOnQuantity}
+            />
+          ) : (
+            <input
+              type="number"
+              className="inputValue"
+              style={{
+                height: `2.6rem`,
+                width: `2.6rem`,
+                color: mainColor,
+              }}
+              minLength={0}
+              max={20}
+              value={amountProduct}
+              onChange={() => {}}
+              disabled={true}
+            />
+          )}
         </div>
       </div>
-      <DivisionItems
-        completed={0}
-        mainColor={mainColor}
-      />
+      <DivisionItems completed={0} mainColor={mainColor} />
     </>
   );
-}
+};

@@ -1,10 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BagContextProvider } from './contexts/bagContexts'
-import { MessageContextProvider } from './contexts/messageContexts'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BagContextProvider } from './contexts/bagContexts';
+import { MessageContextProvider } from './contexts/messageContexts';
 
-import './index.css'
-import { Routers } from './routes'
+import './index.css';
+import { Routers } from './routes';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -16,4 +16,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </MessageContextProvider>
     </div>
   </React.StrictMode>
-)
+);

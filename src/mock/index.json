@@ -2,26 +2,26 @@
   "promotions": [
     {
       "id": 1,
-      "url_image": "",
+      "url_image": "/src/assets/banner.png",
       "alt_image": "'image 01'"
     },
     {
       "id": 2,
-      "url_image": "",
+      "url_image": "/src/assets/banner2.png",
       "alt_image": "'image 02'"
     },
     {
       "id": 3,
-      "url_image": "",
+      "url_image": "/src/assets/banner.png",
       "alt_image": "'image 03'"
     },
     {
-      "url_image": "",
+      "url_image": "/src/assets/banner2.png",
       "alt_image": "'image 04'",
       "id": 4
     },
     {
-      "url_image": "",
+      "url_image": "/src/assets/banner.png",
       "alt_image": "'image 05",
       "id": 5
     }
@@ -29,14 +29,14 @@
   "items": [
     {
       "id": 1,
-      "url_image": "",
+      "url_image": "/src/assets/burger.png",
       "category": "tradicional",
       "name": "Golden Burger",
       "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
       "price": 25.5
     },
     {
-      "url_image": "",
+      "url_image": "/src/assets/burger.png",
       "category": "tradicional",
       "name": "Texas Burger",
       "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
@@ -44,7 +44,7 @@
       "id": 2
     },
     {
-      "url_image": "",
+      "url_image": "/src/assets/burger.png",
       "category": "tradicional",
       "name": "Monster Burger",
       "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",
@@ -52,7 +52,7 @@
       "id": 3
     },
     {
-      "url_image": "",
+      "url_image": "/src/assets/burger.png",
       "category": "tradicional",
       "name": "Monster2 Burger",
       "description": "2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa,Pão brioche artesanal",

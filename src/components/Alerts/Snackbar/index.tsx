@@ -1,5 +1,5 @@
-import { Snackbar, AlertProps, Alert } from '@mui/material'
-import { useState, forwardRef, useEffect, useContext } from 'react'
+import { Snackbar, AlertProps, Alert } from '@mui/material';
+import { useState, forwardRef, useEffect, useContext } from 'react';
 import Slide, { SlideProps } from '@mui/material/Slide';
 import { MessageContext } from '../../../contexts/messageContexts';
 
@@ -8,14 +8,14 @@ function TransitionUp(props: TransitionProps) {
   return <Slide {...props} direction="right" />;
 }
 
+const SnackAlert = forwardRef<HTMLDivElement, AlertProps>(function SnackAlert(
+  props,
+  ref
+) {
+  return <Alert elevation={6} ref={ref} {...props} />;
+});
 
-const SnackAlert = forwardRef<HTMLDivElement, AlertProps>(
-  function SnackAlert(props, ref) {
-    return <Alert elevation={6} ref={ref} {...props} />
-  }
-)
-
-export type typeMessageProps = 'success' | 'error' | 'info' | 'warning'
+export type typeMessageProps = 'success' | 'error' | 'info' | 'warning';
 interface IMessage {
   message: string;
   typeMessage: typeMessageProps;
@@ -23,33 +23,39 @@ interface IMessage {
   onVisibleChange?: (value: boolean) => void;
 }
 
-export const Message = ({ message, typeMessage, onVisibleChange, show = false }: IMessage) => {
-  const [open, setOpen] = useState(false)
-  const { setMessageProps } = useContext(MessageContext)
+export const Message = ({
+  message,
+  typeMessage,
+  onVisibleChange,
+  show = false,
+}: IMessage) => {
+  const [open, setOpen] = useState(false);
+  const { setMessageProps } = useContext(MessageContext);
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     // if (reason === 'clickaway') {
     //   return
     // }
-    setOpen(false)
+    setOpen(false);
     setMessageProps({
       message: '',
       typeMessage: typeMessage,
-      showMessage: false
-    })
-  }
+      showMessage: false,
+    });
+  };
 
   useEffect(() => {
     if (onVisibleChange) {
-      onVisibleChange(open)
+      onVisibleChange(open);
     }
-  }, [open])
+  }, [open]);
 
   useEffect(() => {
-    setOpen(show)
-  }, [show])
-
-
+    setOpen(show);
+  }, [show]);
 
   return (
     <Snackbar
@@ -58,17 +64,17 @@ export const Message = ({ message, typeMessage, onVisibleChange, show = false }:
       onClose={handleClose}
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'center'
+        horizontal: 'center',
       }}
       TransitionComponent={TransitionUp}
     >
       <SnackAlert
         onClose={handleClose}
         severity={typeMessage}
-        sx={{ width: '80%' }}>
+        sx={{ width: '80%' }}
+      >
         {message}
       </SnackAlert>
     </Snackbar>
-
-  )
-}
+  );
+};

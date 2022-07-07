@@ -7,18 +7,22 @@ interface BasicPopoverProps {
   children?: ReactElement;
 }
 
-export const BasicPopover = ({ anchorElement, onHandleAnchor, children }: BasicPopoverProps) => {
+export const BasicPopover = ({
+  anchorElement,
+  onHandleAnchor,
+  children,
+}: BasicPopoverProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClose = () => {
     if (onHandleAnchor) {
-      onHandleAnchor(null)
+      onHandleAnchor(null);
     }
     setAnchorEl(null);
   };
   useEffect(() => {
-    setAnchorEl(anchorElement)
-  }, [anchorElement])
+    setAnchorEl(anchorElement);
+  }, [anchorElement]);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -39,4 +43,4 @@ export const BasicPopover = ({ anchorElement, onHandleAnchor, children }: BasicP
       </Popover>
     </div>
   );
-}
+};
