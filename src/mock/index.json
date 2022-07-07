@@ -138,7 +138,7 @@
       "shipping": 2,
       "sub_total": 100,
       "created_at": "2022-07-06T20:34:06.465Z",
-      "status": "preparing",
+      "order_status": "preparing",
       "id": 1
     }
   ]

@@ -16,7 +16,7 @@ export const formatMoney = (number: number) => {
     return format.format(number)
 }
 
-export const formatDate = (date: Date, stringFormat: string) => {
+export const formatDate = (date: Date | string, stringFormat: string) => {
     return format(
         new Date(date),
         stringFormat,
@@ -24,7 +24,7 @@ export const formatDate = (date: Date, stringFormat: string) => {
 }
 
 export const feedbackMessage = (message: string, typeMessage: string) => {
- 
+
 }
 
 export const mainColor = '#FB9400'

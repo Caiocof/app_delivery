@@ -79,7 +79,7 @@ export const MenuBar = () => {
                     </li>
                     {userLogged &&
                         <>
-                            <li className="menuList">
+                            <li className="menuList" onClick={() => navigate('/my-orders')}>
                                 <div className="menuListIcon">
                                     <ClipboardText size={20} weight="bold" color='#6A7D8B' />
                                 </div>

@@ -7,6 +7,6 @@ export interface IOrder {
   shipping: number;
   sub_total: number;
   the_change: number;
-  order_state: string;
+  order_status: string;
   created_at?: Date;
 }

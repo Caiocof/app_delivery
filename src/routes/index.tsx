@@ -9,6 +9,7 @@ import { Bag } from "../pages/Bag";
 import { Address } from "../pages/Address";
 import { AddressForm } from "../pages/Address/FormAddress";
 import { Checkout } from "../pages/Checkout";
+import { MyOrders } from "../pages/MyOrders";
 
 export const Routers = () => {
     return (
@@ -16,8 +17,10 @@ export const Routers = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/menubar" element={<MenuBar />} />
+                <Route path="/products/:id" element={<Products />} />
                 <Route path="/bag" element={<Bag />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/my-orders" element={<MyOrders />} />
                 <Route path="/address" element={<Address />} />
                 <Route path="/address/address-form" element={<AddressForm />}>
                     <Route path=":id" element={<AddressForm />} />
@@ -25,7 +28,6 @@ export const Routers = () => {
                 <Route path="/account" element={<PageLogin />} />
                 <Route path="/account/register-account" element={<PageRegister />} />
                 <Route path="/account/forget-account" element={<PageForget />} />
-                <Route path="/products/:id" element={<Products />} />
             </Routes>
         </BrowserRouter>
     );

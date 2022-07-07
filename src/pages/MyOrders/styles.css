@@ -1,0 +1,104 @@
+.myOrderContainer {
+  display: flex;
+  padding: 25px 1.5rem;
+  flex-direction: column;
+  min-height: 790px;
+  background-color: #FFF;
+}
+
+.myOrderHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.myOrderCard {
+  display: flex;
+  width: auto;
+  height: 156px;
+  padding: 24px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFF;
+  box-shadow: 0px 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.myOrderCard .myOrderCardLeft {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.myOrderCardLeft .myOrderCardLeftTop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.myOrderCardLeft .myOrderCardLeftTop span {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.51rem;
+  color: #1B1B1B;
+}
+
+.myOrderCardLeft .myOrderCardLeftTop p {
+  font-weight: 400;
+  font-size: 0.81rem;
+  line-height: 0.98rem;
+  color: #6A7D8B;
+}
+
+.myOrderCardLeft .myOrderLeftBottom span {
+  font-weight: 400;
+  font-size: 0.81rem;
+  line-height: 0.98rem;
+  color: #6A7D8B;
+}
+
+.myOrderCardLeft .myOrderLeftBottom p {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.51rem;
+  color: #1B1B1B;
+}
+
+.myOrderCard .myOrderCardRight {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.myOrderCardRight .myOrderCardRightTop {
+  display: flex;
+  width: 4.87rem;
+  height: 1.62rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #FEFAE6;
+  color: #D4BC34;
+  border-radius: 4px;
+}
+
+.myOrderCardRight .myOrderCardRightTop p {
+  font-weight: 600;
+  font-size: 0.68rem;
+  line-height: 0.83rem;
+}
+
+.myOrderCardRight .myOrderCardRightBottom {
+  display: flex;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1B1B1B;
+  border-radius: 5px;
+}

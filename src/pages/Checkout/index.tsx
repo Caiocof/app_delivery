@@ -62,7 +62,7 @@ export const Checkout = () => {
         items: bagProps,
         shipping: valueShipping,
         sub_total: subTotal,
-        order_state: "preparing",
+        order_status: "preparing",
         created_at: new Date()
       }
       registerOrder(item_order)
