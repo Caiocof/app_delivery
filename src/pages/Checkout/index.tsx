@@ -10,7 +10,6 @@ import { HeaderPages } from '../../components/HeaderPages';
 import { InputForm } from '../../components/InputForm';
 import { BagContext } from '../../contexts/bagContexts';
 import { MessageContext } from '../../contexts/messageContexts';
-import { IOrder } from '../../interfaces/order';
 import { IProducts } from '../../interfaces/products';
 import { IUser } from '../../interfaces/user';
 import { registerOrder } from '../../service/order';
@@ -63,11 +62,17 @@ export const Checkout = () => {
         items: bagProps,
         shipping: valueShipping,
         sub_total: subTotal,
+        order_state: "preparing",
         created_at: new Date()
       }
       registerOrder(item_order)
         .then(() => {
-          navigate('/')
+          setMessageProps({
+            message: 'Pedido realizado com sucesso!',
+            typeMessage: 'info',
+            showMessage: true
+          })
+          navigate('/my-orders')
         }).catch((error) => console.log(error))
     }
 

@@ -4,5 +4,12 @@ import { api } from './api'
 
 
 export const registerOrder = (order: IOrder): AxiosPromise => {
-  return api.post('/orders',order)
+  if (order.order_state == "preparing") {
+    return api.post('/orders', order)
+  }
+  throw new Error('error in order status')
+}
+
+export const listOrders = (user_id: number): AxiosPromise => {
+  return api.get(`/orders?user_id=${user_id}`)
 }
