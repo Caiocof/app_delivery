@@ -4,7 +4,7 @@ import { api } from './api'
 
 
 export const registerOrder = (order: IOrder): AxiosPromise => {
-  if (order.order_state == "preparing") {
+  if (order.order_status == "preparing") {
     return api.post('/orders', order)
   }
   throw new Error('error in order status')

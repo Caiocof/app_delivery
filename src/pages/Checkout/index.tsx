@@ -69,13 +69,12 @@ export const Checkout = () => {
         .then(() => {
           setMessageProps({
             message: 'Pedido realizado com sucesso!',
-            typeMessage: 'info',
+            typeMessage: 'success',
             showMessage: true
           })
           navigate('/my-orders')
         }).catch((error) => console.log(error))
     }
-
 
   }
 
