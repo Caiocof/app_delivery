@@ -22,7 +22,7 @@ export const OrdersDetail = () => {
 
   const [itemOrder, setItemOrder] = useState();
   const [buttonSelected, setButtonSelected] = useState<'money' | 'card'>(
-    'money'
+    'money',
   );
   const [theChange, setTheChange] = useState(0);
   const [product, setProduct] = useState<IProducts>({

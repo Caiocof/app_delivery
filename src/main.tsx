@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </BagContextProvider>
       </MessageContextProvider>
     </div>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -28,12 +28,12 @@ export const Checkout = () => {
   const { messageProps, setMessageProps } = useContext(MessageContext);
 
   const [selectedProduct, setSelectedProduct] = useState<IProducts>(
-    {} as IProducts
+    {} as IProducts,
   );
   const [userLogged, setUserLogged] = useState<IUser>();
 
   const [buttonSelected, setButtonSelected] = useState<'money' | 'card'>(
-    'money'
+    'money',
   );
   const [showDialog, setShowDialog] = useState(false);
   const [addressShipping, setAddressShipping] = useState('');
@@ -94,7 +94,7 @@ export const Checkout = () => {
         .then(({ data }) => {
           setValueShipping(data[0].price);
           setAddressShipping(
-            `${address.number} - ${address.street} - ${address.district}`
+            `${address.number} - ${address.street} - ${address.district}`,
           );
         })
         .catch((error) => console.log(error));
@@ -110,8 +110,8 @@ export const Checkout = () => {
     setSubTotal(
       bagProps.reduce(
         (total, item) => total + item.product.price * item.amount,
-        0
-      )
+        0,
+      ),
     );
   }, [bagProps]);
 

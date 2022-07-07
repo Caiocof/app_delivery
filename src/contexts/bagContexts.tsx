@@ -42,7 +42,7 @@ export const BagContextProvider: React.FC<IBagProvider> = ({ children }) => {
             return { ...bag, amount: amountItems };
           }
           return bag;
-        })
+        }),
       );
     }
   };

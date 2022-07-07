@@ -10,7 +10,7 @@ function TransitionUp(props: TransitionProps) {
 
 const SnackAlert = forwardRef<HTMLDivElement, AlertProps>(function SnackAlert(
   props,
-  ref
+  ref,
 ) {
   return <Alert elevation={6} ref={ref} {...props} />;
 });
@@ -34,7 +34,7 @@ export const Message = ({
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     // if (reason === 'clickaway') {
     //   return

@@ -43,7 +43,7 @@ export const AddressForm = ({ address }: AddressProps) => {
 
   const handleChangeItem = (
     event: ChangeEvent<HTMLInputElement>,
-    name: string
+    name: string,
   ) => {
     setAddressData({
       ...addressData,

@@ -3,15 +3,15 @@ import Popover from '@mui/material/Popover';
 
 interface BasicPopoverProps {
   anchorElement: HTMLButtonElement | null;
-  onHandleAnchor?: (value: HTMLButtonElement | null) => void;
-  children?: ReactElement;
+  onHandleAnchor: (value: HTMLButtonElement | null) => void;
+  children: ReactElement;
 }
 
-export const BasicPopover = ({
+export function BasicPopover({
   anchorElement,
   onHandleAnchor,
   children,
-}: BasicPopoverProps) => {
+}: BasicPopoverProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handleClose = () => {
@@ -43,4 +43,6 @@ export const BasicPopover = ({
       </Popover>
     </div>
   );
-};
+}
+
+export default BasicPopover;

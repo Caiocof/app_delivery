@@ -5,8 +5,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { Button } from '../../Button';
 import { useEffect, useState } from 'react';
+import { Button } from '../../Button';
 import { mainColor } from '../../../utils';
 
 interface CustomDialogProps {
@@ -17,13 +17,13 @@ interface CustomDialogProps {
   onHandleClose?: (value: boolean) => void;
 }
 
-export const CustomDialog = ({
+export function CustomDialog({
   title,
   description,
-  isClicked = () => {},
+  isClicked = () => { },
   onHandleClose,
   showDialog = false,
-}: CustomDialogProps) => {
+}: CustomDialogProps) {
   const [open, setOpen] = useState(showDialog);
 
   const handleClose = () => {
@@ -70,4 +70,6 @@ export const CustomDialog = ({
       </Dialog>
     </div>
   );
-};
+}
+
+export default CustomDialog;

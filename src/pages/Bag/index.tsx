@@ -1,21 +1,23 @@
-import { useState, useContext, useEffect, FormEvent } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CustomDialog } from '../../components/Alerts/Dialog';
-import { Message } from '../../components/Alerts/Snackbar';
-import { Button } from '../../components/Button';
-import { CardOrder } from '../../components/CardOrder';
-import { DivisionItems } from '../../components/DivisionItems';
-import { HeaderPages } from '../../components/HeaderPages';
-import { BagContext } from '../../contexts/bagContexts';
-import { MessageContext } from '../../contexts/messageContexts';
-import { IAddress } from '../../interfaces/address';
+import {
+  CustomDialog,
+  Message,
+  Button,
+  CardOrder,
+  DivisionItems,
+  HeaderPages,
+} from '../../components';
+
+import { BagContext, MessageContext } from '../../contexts';
+
 import { IProducts } from '../../interfaces/products';
 import { IUser } from '../../interfaces/user';
 import { getShippingForDistrict } from '../../service/shipping';
 import { formatMoney, mainColor } from '../../utils';
 import './styles.css';
 
-export const Bag = () => {
+export function Bag() {
   const navigate = useNavigate();
 
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext);
@@ -25,14 +27,14 @@ export const Bag = () => {
   const [addressShipping, setAddressShipping] = useState('');
   const [valueShipping, setValueShipping] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<IProducts>(
-    {} as IProducts
+    {} as IProducts,
   );
   const [showDialog, setShowDialog] = useState(false);
   const [valueTotal, setValueTotal] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
 
   const handleOnQuantity = (product: IProducts, quantity: number) => {
-    if (quantity == 0) {
+    if (quantity === 0) {
       setShowDialog(true);
       setSelectedProduct(product);
     }
@@ -58,7 +60,7 @@ export const Bag = () => {
         showMessage: true,
       });
       return;
-    } else if (!valueShipping) {
+    } if (!valueShipping) {
       setMessageProps({
         message: 'Selecione o endereço de entrega!',
         typeMessage: 'warning',
@@ -77,31 +79,33 @@ export const Bag = () => {
         .then(({ data }) => {
           setValueShipping(data[0].price);
           setAddressShipping(
-            `${address.number} - ${address.street} - ${address.district}`
+            `${address.number} - ${address.street} - ${address.district}`,
           );
         })
-        .catch((error) => console.log(error));
+        .catch((error) =>
+          console.log(error));
     }
   };
 
   useEffect(() => {
     setValueTotal(subTotal + valueShipping);
-    return () => {};
+    return () => { };
   }, [subTotal, valueShipping]);
 
   useEffect(() => {
     setSubTotal(
       bagProps.reduce(
-        (total, item) => total + item.product.price * item.amount,
-        0
-      )
+        (total, item) =>
+          total + item.product.price * item.amount,
+        0,
+      ),
     );
   }, [bagProps]);
 
   useEffect(() => {
     handleSetAddressShipping();
     if (localStorage.getItem('user')) {
-      let userStorage = JSON.parse(localStorage.getItem('user') || '');
+      const userStorage = JSON.parse(localStorage.getItem('user') || '');
       setUserLogged(userStorage);
     }
   }, []);
@@ -127,29 +131,29 @@ export const Bag = () => {
       <div className="bagContainer">
         <header className="bagHeader">
           <HeaderPages
-            navigateRoute={'/'}
+            navigateRoute="/"
             title="Sacola"
             iconColor={mainColor}
           />
           <DivisionItems mainColor={mainColor} completed={0} />
-          <span className="bagAmountItems">{`${bagProps.length} item${
-            bagProps.length > 1 ? 's' : ''
-          }`}</span>
+          <span className="bagAmountItems">
+            {`${bagProps.length} item${bagProps.length > 1 ? 's' : ''}`}
+          </span>
           <DivisionItems mainColor={mainColor} completed={0} />
         </header>
         <div className="body">
           <div className="bagCardItems">
-            {bagProps?.map((item) => {
-              return (
+            {bagProps?.map((item) =>
+              (
                 <CardOrder
                   key={item.product.id}
                   product={item.product}
                   amountProduct={item.amount}
                   mainColor={mainColor}
-                  onQuantity={(value) => handleOnQuantity(item.product, value)}
+                  onQuantity={(value) =>
+                    handleOnQuantity(item.product, value)}
                 />
-              );
-            })}
+              ))}
           </div>
           {userLogged && (
             <div className="bagShipping">
@@ -160,8 +164,7 @@ export const Bag = () => {
                 title={addressShipping || 'Selecionar Endereço'}
                 titleColor={addressShipping ? '#6A7D8B' : mainColor}
                 isClicked={() =>
-                  navigate('/address', { state: { origin: '/bag' } })
-                }
+                  navigate('/address', { state: { origin: '/bag' } })}
               />
             </div>
           )}
@@ -184,7 +187,7 @@ export const Bag = () => {
             <Button
               buttonColor={mainColor}
               title="Continuar"
-              disabled={bagProps.length ? false : true}
+              disabled={!bagProps.length}
               isClicked={handleOrderSubmit}
             />
           </div>
@@ -192,4 +195,6 @@ export const Bag = () => {
       </div>
     </>
   );
-};
+}
+
+export default Bag;
