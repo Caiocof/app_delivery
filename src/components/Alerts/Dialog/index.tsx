@@ -20,7 +20,7 @@ interface CustomDialogProps {
 export function CustomDialog({
   title,
   description,
-  isClicked = () => { },
+  isClicked = () => {},
   onHandleClose,
   showDialog = false,
 }: CustomDialogProps) {

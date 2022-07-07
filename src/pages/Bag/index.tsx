@@ -60,7 +60,8 @@ export function Bag() {
         showMessage: true,
       });
       return;
-    } if (!valueShipping) {
+    }
+    if (!valueShipping) {
       setMessageProps({
         message: 'Selecione o endereço de entrega!',
         typeMessage: 'warning',
@@ -82,21 +83,19 @@ export function Bag() {
             `${address.number} - ${address.street} - ${address.district}`,
           );
         })
-        .catch((error) =>
-          console.log(error));
+        .catch((error) => console.log(error));
     }
   };
 
   useEffect(() => {
     setValueTotal(subTotal + valueShipping);
-    return () => { };
+    return () => {};
   }, [subTotal, valueShipping]);
 
   useEffect(() => {
     setSubTotal(
       bagProps.reduce(
-        (total, item) =>
-          total + item.product.price * item.amount,
+        (total, item) => total + item.product.price * item.amount,
         0,
       ),
     );
@@ -130,11 +129,7 @@ export function Bag() {
       />
       <div className="bagContainer">
         <header className="bagHeader">
-          <HeaderPages
-            navigateRoute="/"
-            title="Sacola"
-            iconColor={mainColor}
-          />
+          <HeaderPages navigateRoute="/" title="Sacola" iconColor={mainColor} />
           <DivisionItems mainColor={mainColor} completed={0} />
           <span className="bagAmountItems">
             {`${bagProps.length} item${bagProps.length > 1 ? 's' : ''}`}
@@ -143,17 +138,15 @@ export function Bag() {
         </header>
         <div className="body">
           <div className="bagCardItems">
-            {bagProps?.map((item) =>
-              (
-                <CardOrder
-                  key={item.product.id}
-                  product={item.product}
-                  amountProduct={item.amount}
-                  mainColor={mainColor}
-                  onQuantity={(value) =>
-                    handleOnQuantity(item.product, value)}
-                />
-              ))}
+            {bagProps?.map((item) => (
+              <CardOrder
+                key={item.product.id}
+                product={item.product}
+                amountProduct={item.amount}
+                mainColor={mainColor}
+                onQuantity={(value) => handleOnQuantity(item.product, value)}
+              />
+            ))}
           </div>
           {userLogged && (
             <div className="bagShipping">
@@ -164,7 +157,8 @@ export function Bag() {
                 title={addressShipping || 'Selecionar Endereço'}
                 titleColor={addressShipping ? '#6A7D8B' : mainColor}
                 isClicked={() =>
-                  navigate('/address', { state: { origin: '/bag' } })}
+                  navigate('/address', { state: { origin: '/bag' } })
+                }
               />
             </div>
           )}

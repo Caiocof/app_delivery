@@ -26,14 +26,13 @@ export function Banner({ itemSlide }: BannerProps) {
         }}
         modules={[Autoplay]}
       >
-        {itemSlide.map((value) =>
-          (
-            <SwiperSlide key={value.id} className="swiperSlide">
-              <div className="slideImg">
-                <img src={value.url_image} alt={value.alt_image} />
-              </div>
-            </SwiperSlide>
-          ))}
+        {itemSlide.map((value) => (
+          <SwiperSlide key={value.id} className="swiperSlide">
+            <div className="slideImg">
+              <img src={value.url_image} alt={value.alt_image} />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
