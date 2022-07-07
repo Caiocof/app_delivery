@@ -1,12 +1,12 @@
 import { FormEvent, useEffect, useState, ChangeEvent } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../../../components/Button'
 import { DivisionItems } from '../../../components/DivisionItems'
 import { HeaderPages } from '../../../components/HeaderPages'
 import { InputForm } from '../../../components/InputForm'
 import { IAddress } from '../../../interfaces/address'
 import { IUser } from '../../../interfaces/user'
-import { getAddressForId } from '../../../service/address'
+import { getAddressForId, registerAddress } from '../../../service/address'
 import { mainColor } from '../../../utils'
 import '../styles.css'
 
@@ -16,9 +16,10 @@ interface AddressProps {
 }
 
 export const AddressForm = ({ address }: AddressProps) => {
+  const navigate = useNavigate()
   const [userLogged, setUserLogged] = useState<IUser>()
   const [addressData, setAddressData] = useState({
-    user_id: "",
+    user_id: 0,
     zipCode: "",
     street: "",
     number: "",
@@ -32,7 +33,12 @@ export const AddressForm = ({ address }: AddressProps) => {
 
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault()
-    console.log(addressData);
+    if (userLogged) {
+      registerAddress(addressData)
+        .then(() => {
+          navigate('/address')
+        }).catch((error) => console.log(error))
+    }
 
   }
 
@@ -50,6 +56,15 @@ export const AddressForm = ({ address }: AddressProps) => {
         ).catch(error => console.log(error))
     }
   }, [address_id])
+
+  useEffect(() => {
+    if (userLogged) {
+      setAddressData({
+        ...addressData,
+        user_id: userLogged?.id
+      })
+    }
+  }, [userLogged])
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
