@@ -9,24 +9,25 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isClicked?: () => void;
 }
 
-export const Button = ({
+export function Button({
   title,
   titleColor,
   buttonColor,
   borderColor,
   isClicked,
   ...rest
-}: ButtonProps) => {
+}: ButtonProps) {
   const border = borderColor ? `1px solid ${borderColor}` : 'none';
   return (
     <div
       className="buttonContainer"
       style={{
         backgroundColor: buttonColor,
-        border: border,
+        border,
       }}
     >
       <button
+        type="button"
         {...rest}
         onClick={isClicked}
         style={{ color: titleColor || '#FFF' }}
@@ -35,4 +36,6 @@ export const Button = ({
       </button>
     </div>
   );
-};
+}
+
+export default Button;

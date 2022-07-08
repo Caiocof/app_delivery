@@ -26,7 +26,7 @@ export const GridItems = ({
 
   return (
     <div className="grid">
-      {gridItems?.map((values) => {
+      {gridItems?.map(values => {
         return (
           <div
             key={values.id}

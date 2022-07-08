@@ -34,7 +34,7 @@ export const Address = () => {
           handleGetAddress();
           setAnchorEl(null);
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   };
 
@@ -50,7 +50,7 @@ export const Address = () => {
         .then(({ data }) => {
           setAddress(data);
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   };
 

@@ -32,7 +32,7 @@ export const SearchInput = ({ mainColor, onSearch }: SearchInputProps) => {
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={e => setSearchValue(e.target.value)}
       />
     </form>
   );

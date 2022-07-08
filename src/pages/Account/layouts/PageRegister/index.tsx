@@ -1,16 +1,15 @@
 import { FormEvent, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageContext } from '../../../../contexts/messageContexts';
-import { Button } from '../../../../components/Button';
-import { DivisionItems } from '../../../../components/DivisionItems';
-import { HeaderPages } from '../../../../components/HeaderPages';
-import { InputForm } from '../../../../components/InputForm';
+import { MessageContext } from '../../../../contexts';
+import {
+  Button, DivisionItems, HeaderPages, InputForm,
+} from '../../../../components';
 import { registerUser } from '../../../../service/users';
 import { mainColor } from '../../../../utils';
 
 import '../../styles.css';
 
-export const PageRegister = () => {
+export function PageRegister() {
   const { setMessageProps } = useContext(MessageContext);
   const navigate = useNavigate();
 
@@ -41,17 +40,22 @@ export const PageRegister = () => {
           });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>
+        console.log(error));
   };
 
   return (
     <div className="AccountContainer">
       <div className="accountHeader">
-        <HeaderPages iconColor={mainColor} navigateRoute={'/account'} />
+        <HeaderPages iconColor={mainColor} navigateRoute="/account" />
         <div className="accountHeaderBody">
           <div className="accountHeaderLogo">
             <p>
-              B7 <span style={{ color: mainColor }}>•</span> Burger
+              B7
+              {' '}
+              <span style={{ color: mainColor }}>•</span>
+              {' '}
+              Burger
             </p>
           </div>
           <span className="accountHeaderText">
@@ -100,11 +104,17 @@ export const PageRegister = () => {
       </form>
       <span className="messageFooter">
         Já tem cadastro?
-        <a onClick={() => navigate('/account')} style={{ color: mainColor }}>
+        <a
+          onClick={() =>
+            navigate('/account')}
+          style={{ color: mainColor }}
+        >
           {' '}
           Fazer Login
         </a>
       </span>
     </div>
   );
-};
+}
+
+export default PageRegister;

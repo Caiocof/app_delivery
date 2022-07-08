@@ -47,9 +47,9 @@ export function InputForm({
       style={
         maxWidthWithRem
           ? {
-            borderColor: focused ? focusColor : '#FFF',
-            maxWidth: `${maxWidthWithRem + 0.5}rem`,
-          }
+              borderColor: focused ? focusColor : '#FFF',
+              maxWidth: `${maxWidthWithRem + 0.5}rem`,
+            }
           : { borderColor: focused ? focusColor : '#FFF' }
       }
     >
@@ -63,15 +63,13 @@ export function InputForm({
         style={
           maxWidthWithRem
             ? {
-              backgroundColor,
-              maxWidth: `${maxWidthWithRem}rem`,
-            }
+                backgroundColor,
+                maxWidth: `${maxWidthWithRem}rem`,
+              }
             : { backgroundColor }
         }
-        onFocus={() =>
-          setFocused(true)}
-        onBlur={() =>
-          setFocused(false)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
       {handleIconPassword()}
     </div>

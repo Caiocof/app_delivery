@@ -19,6 +19,7 @@ export const formatDate = (date: Date | string, stringFormat: string) =>
   format(new Date(date), stringFormat, { locale: ptBr });
 
 export const mainColor = '#FB9400';
+// export const mainColor = '#6AB70A';
 export const burgerImage = bImage;
 export const bannerImage = banner1;
 export const bannerImage2 = banner2;

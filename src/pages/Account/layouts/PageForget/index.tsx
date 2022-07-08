@@ -1,13 +1,15 @@
-import { FormEvent, useState } from 'react';
-import { Button } from '../../../../components/Button';
-import { DivisionItems } from '../../../../components/DivisionItems';
-import { HeaderPages } from '../../../../components/HeaderPages';
-import { InputForm } from '../../../../components/InputForm';
+import { FormEvent } from 'react';
+import {
+  Button,
+  DivisionItems,
+  HeaderPages,
+  InputForm,
+} from '../../../../components';
 import { mainColor } from '../../../../utils';
 
 import '../../styles.css';
 
-export const PageForget = () => {
+export function PageForget() {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     console.log('recuperar senha');
@@ -16,7 +18,7 @@ export const PageForget = () => {
   return (
     <div className="AccountContainer">
       <div className="accountHeader">
-        <HeaderPages iconColor={mainColor} navigateRoute={'/account'} />
+        <HeaderPages iconColor={mainColor} navigateRoute="/account" />
         <div className="accountHeaderBody">
           <div className="accountHeaderLogo">
             <p>
@@ -48,4 +50,5 @@ export const PageForget = () => {
       </form>
     </div>
   );
-};
+}
+export default PageForget;

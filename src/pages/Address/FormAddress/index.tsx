@@ -37,7 +37,7 @@ export const AddressForm = ({ address }: AddressProps) => {
         .then(() => {
           navigate('/address');
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   };
 
@@ -55,7 +55,7 @@ export const AddressForm = ({ address }: AddressProps) => {
     if (address_id) {
       getAddressForId(+address_id)
         .then(({ data }) => setAddressData(data))
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   }, [address_id]);
 
@@ -99,7 +99,7 @@ export const AddressForm = ({ address }: AddressProps) => {
           backgroundColor="#F9F9FB"
           name="zipCode"
           id="zipCode"
-          onChange={(event) => handleChangeItem(event, 'zipCode')}
+          onChange={event => handleChangeItem(event, 'zipCode')}
         />
         <div className="addressStreetNumber">
           <div className="addressStreet">
@@ -113,7 +113,7 @@ export const AddressForm = ({ address }: AddressProps) => {
               backgroundColor="#F9F9FB"
               name="street"
               id="street"
-              onChange={(event) => handleChangeItem(event, 'street')}
+              onChange={event => handleChangeItem(event, 'street')}
             />
           </div>
           <div className="addressNumber">
@@ -126,7 +126,7 @@ export const AddressForm = ({ address }: AddressProps) => {
               backgroundColor="#F9F9FB"
               name="number"
               id="number"
-              onChange={(event) => handleChangeItem(event, 'number')}
+              onChange={event => handleChangeItem(event, 'number')}
               defaultValue={addressData.number}
             />
           </div>
@@ -139,7 +139,7 @@ export const AddressForm = ({ address }: AddressProps) => {
           backgroundColor="#F9F9FB"
           name="district"
           id="district"
-          onChange={(event) => handleChangeItem(event, 'district')}
+          onChange={event => handleChangeItem(event, 'district')}
           defaultValue={addressData.district}
         />
         <label htmlFor="city">Cidade</label>
@@ -151,7 +151,7 @@ export const AddressForm = ({ address }: AddressProps) => {
           name="city"
           id="city"
           defaultValue={addressData.city}
-          onChange={(event) => handleChangeItem(event, 'city')}
+          onChange={event => handleChangeItem(event, 'city')}
         />
         <label htmlFor="state">Estado</label>
         <InputForm
@@ -162,7 +162,7 @@ export const AddressForm = ({ address }: AddressProps) => {
           name="state"
           id="state"
           defaultValue={addressData.state}
-          onChange={(event) => handleChangeItem(event, 'state')}
+          onChange={event => handleChangeItem(event, 'state')}
         />
         <label htmlFor="complements">Complemento</label>
         <InputForm
@@ -172,7 +172,7 @@ export const AddressForm = ({ address }: AddressProps) => {
           backgroundColor="#F9F9FB"
           name="complements"
           id="complements"
-          onChange={(event) => handleChangeItem(event, 'complements')}
+          onChange={event => handleChangeItem(event, 'complements')}
           defaultValue={addressData.complements}
         />
         <label htmlFor="" />

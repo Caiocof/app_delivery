@@ -14,19 +14,21 @@ type BagContextProps = {
   bagProps: IBagContext[];
   addBagItems: (item: IProducts, amountItems: number) => void;
   removeBagItems: (item: IProducts) => void;
+  ClearBag: () => void;
 };
 
 export const BagContext = createContext<BagContextProps>({
   bagProps: [],
   addBagItems: (item: IProducts, amountItems: number) => {},
   removeBagItems: (item: IProducts) => {},
+  ClearBag: () => {},
 });
 
 export const BagContextProvider: React.FC<IBagProvider> = ({ children }) => {
   const [bagProps, setBagProps] = useState<IBagContext[]>([]);
 
   const addBagItems = (item: IProducts, amountItems: number) => {
-    const bagItem = bagProps.find((bag) => bag.product.id == item.id);
+    const bagItem = bagProps.find(bag => bag.product.id == item.id);
     if (!bagItem) {
       setBagProps([
         ...bagProps,
@@ -37,7 +39,7 @@ export const BagContextProvider: React.FC<IBagProvider> = ({ children }) => {
       ]);
     } else {
       setBagProps(
-        bagProps.map((bag) => {
+        bagProps.map(bag => {
           if (bag.product.id == item.id) {
             return { ...bag, amount: amountItems };
           }
@@ -48,11 +50,16 @@ export const BagContextProvider: React.FC<IBagProvider> = ({ children }) => {
   };
 
   const removeBagItems = (item: IProducts) => {
-    setBagProps(bagProps.filter((bag) => bag.product.id != item.id));
+    setBagProps(bagProps.filter(bag => bag.product.id != item.id));
+  };
+  const ClearBag = () => {
+    setBagProps([]);
   };
 
   return (
-    <BagContext.Provider value={{ bagProps, addBagItems, removeBagItems }}>
+    <BagContext.Provider
+      value={{ bagProps, addBagItems, removeBagItems, ClearBag }}
+    >
       {children}
     </BagContext.Provider>
   );

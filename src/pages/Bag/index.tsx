@@ -17,7 +17,7 @@ import { getShippingForDistrict } from '../../service/shipping';
 import { formatMoney, mainColor } from '../../utils';
 import './styles.css';
 
-export function Bag() {
+export const Bag = () => {
   const navigate = useNavigate();
 
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext);
@@ -83,7 +83,7 @@ export function Bag() {
             `${address.number} - ${address.street} - ${address.district}`,
           );
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   };
 
@@ -116,7 +116,7 @@ export function Bag() {
         description="Deseja realmente deletar esse item?"
         showDialog={showDialog}
         isClicked={handleRemoveItem}
-        onHandleClose={(value) => {
+        onHandleClose={value => {
           setShowDialog(value);
           handleOnQuantity(selectedProduct, 1);
           setSelectedProduct({} as IProducts);
@@ -138,13 +138,13 @@ export function Bag() {
         </header>
         <div className="body">
           <div className="bagCardItems">
-            {bagProps?.map((item) => (
+            {bagProps?.map(item => (
               <CardOrder
                 key={item.product.id}
                 product={item.product}
                 amountProduct={item.amount}
                 mainColor={mainColor}
-                onQuantity={(value) => handleOnQuantity(item.product, value)}
+                onQuantity={value => handleOnQuantity(item.product, value)}
               />
             ))}
           </div>
@@ -189,6 +189,4 @@ export function Bag() {
       </div>
     </>
   );
-}
-
-export default Bag;
+};

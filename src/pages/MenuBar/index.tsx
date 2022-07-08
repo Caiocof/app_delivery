@@ -45,8 +45,7 @@ export function MenuBar() {
       <Button
         title="Fazer Login"
         buttonColor={mainColor}
-        isClicked={() =>
-          navigate('/account')}
+        isClicked={() => navigate('/account')}
       />
     );
   };
@@ -60,29 +59,20 @@ export function MenuBar() {
             size={20}
             weight="bold"
             color={mainColor || '#1B1B1B'}
-            onClick={() =>
-              navigate('/')}
+            onClick={() => navigate('/')}
           />
         </div>
       </div>
       <DivisionItems mainColor={mainColor} completed={50} />
       <div className="menuBody">
         <ul>
-          <li
-            className="menuList"
-            onClick={() =>
-              navigate('/')}
-          >
+          <li className="menuList" onClick={() => navigate('/')}>
             <div className="menuListIcon">
               <ForkKnife size={20} weight="bold" color="#6A7D8B" />
             </div>
             <div className="menuListName">Cardápio</div>
           </li>
-          <li
-            className="menuList"
-            onClick={() =>
-              navigate('/bag')}
-          >
+          <li className="menuList" onClick={() => navigate('/bag')}>
             <div className="menuListIcon">
               <Bag size={20} weight="bold" color="#6A7D8B" />
             </div>
@@ -90,11 +80,7 @@ export function MenuBar() {
           </li>
           {userLogged && (
             <>
-              <li
-                className="menuList"
-                onClick={() =>
-                  navigate('/my-orders')}
-              >
+              <li className="menuList" onClick={() => navigate('/my-orders')}>
                 <div className="menuListIcon">
                   <ClipboardText size={20} weight="bold" color="#6A7D8B" />
                 </div>

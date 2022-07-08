@@ -1,6 +1,4 @@
-import {
-  FormEvent, useContext, useEffect, useState,
-} from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getItemForId } from '../../service/items';
 import { IProducts } from '../../interfaces/products';
@@ -32,8 +30,7 @@ export function Product() {
         setItem(data);
         setPrice(data.price);
       })
-      .catch((error) =>
-        console.log(error));
+      .catch(error => console.log(error));
   };
 
   const handleOnQuantity = (quantity: number) => {
@@ -67,17 +64,17 @@ export function Product() {
         message={messageProps.message}
         typeMessage={messageProps.typeMessage}
         show={messageProps.showMessage}
-        onVisibleChange={(value) => {
+        onVisibleChange={value => {
           setMessageProps({ ...messageProps, showMessage: value });
         }}
       />
       <div className="containerProducts">
-        <div className="headerProducts">
+        <div className="headerProducts" style={{ backgroundColor: mainColor }}>
           <HeaderPages
             iconColor="#FFF"
             title="Produto"
             titleColor="#FFF"
-            backgroundColor="#F08E00"
+            backgroundColor={mainColor}
             navigateRoute="/"
           />
           <div className="productImage">
@@ -101,7 +98,11 @@ export function Product() {
                 {formatMoney(price)}
               </span>
             </div>
-            <Button title="Adicionar à sacola" buttonColor={mainColor} />
+            <Button
+              type="submit"
+              title="Adicionar à sacola"
+              buttonColor={mainColor}
+            />
           </form>
         </div>
       </div>

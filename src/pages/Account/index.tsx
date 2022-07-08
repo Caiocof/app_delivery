@@ -1,16 +1,18 @@
 import { FormEvent, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Button';
-import { DivisionItems } from '../../components/DivisionItems';
-import { HeaderPages } from '../../components/HeaderPages';
-import { InputForm } from '../../components/InputForm';
-import { Message } from '../../components/Alerts/Snackbar';
-import { MessageContext } from '../../contexts/messageContexts';
+import {
+  Button,
+  DivisionItems,
+  HeaderPages,
+  InputForm,
+  Message,
+} from '../../components';
+import { MessageContext } from '../../contexts';
 import { login } from '../../service/users';
 import { mainColor } from '../../utils';
 import './styles.css';
 
-export const PageLogin = () => {
+export function PageLogin() {
   const [buttonDisable, setButtonDisable] = useState(false);
 
   const { messageProps, setMessageProps } = useContext(MessageContext);
@@ -40,7 +42,7 @@ export const PageLogin = () => {
           });
         }
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   };
 
   return (
@@ -49,13 +51,13 @@ export const PageLogin = () => {
         message={messageProps.message}
         typeMessage={messageProps.typeMessage}
         show={messageProps.showMessage}
-        onVisibleChange={(value) => {
+        onVisibleChange={value => {
           setMessageProps({ ...messageProps, showMessage: value });
         }}
       />
       <div className="AccountContainer">
         <div className="accountHeader">
-          <HeaderPages iconColor={mainColor} navigateRoute={'/'} />
+          <HeaderPages iconColor={mainColor} navigateRoute="/" />
           <div className="accountHeaderBody">
             <div className="accountHeaderLogo">
               <p>
@@ -119,4 +121,6 @@ export const PageLogin = () => {
       </div>
     </>
   );
-};
+}
+
+export default PageLogin;

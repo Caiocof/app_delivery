@@ -22,9 +22,10 @@ import { getShippingForDistrict } from '../../service/shipping';
 import { formatMoney, mainColor } from '../../utils';
 import './styles.css';
 
-export function Checkout() {
+export const Checkout = () => {
   const navigate = useNavigate();
-  const { bagProps, addBagItems, removeBagItems } = useContext(BagContext);
+  const { bagProps, addBagItems, removeBagItems, ClearBag } =
+    useContext(BagContext);
   const { messageProps, setMessageProps } = useContext(MessageContext);
 
   const [selectedProduct, setSelectedProduct] = useState<IProducts>(
@@ -81,9 +82,10 @@ export function Checkout() {
             typeMessage: 'success',
             showMessage: true,
           });
+          ClearBag();
           navigate('/my-orders');
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   };
 
@@ -97,7 +99,7 @@ export function Checkout() {
             `${address.number} - ${address.street} - ${address.district}`,
           );
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   };
 
@@ -134,7 +136,7 @@ export function Checkout() {
         description="Deseja realmente deletar esse item?"
         showDialog={showDialog}
         isClicked={handleRemoveItem}
-        onHandleClose={(value) => {
+        onHandleClose={value => {
           setShowDialog(value);
           handleOnQuantity(selectedProduct, 1);
           setSelectedProduct({} as IProducts);
@@ -177,9 +179,21 @@ export function Checkout() {
                   ? 'buttonSelected'
                   : 'buttonNotSelected'
               }
+              style={
+                buttonSelected === 'money'
+                  ? { backgroundColor: mainColor }
+                  : { color: mainColor }
+              }
               onClick={() => setButtonSelected('money')}
             >
-              <div className="checkoutIconPayment">
+              <div
+                className="checkoutIconPayment"
+                style={
+                  buttonSelected === 'money'
+                    ? { backgroundColor: mainColor }
+                    : {}
+                }
+              >
                 <CurrencyCircleDollar size={32} />
               </div>
               <p>Dinheiro</p>
@@ -191,12 +205,24 @@ export function Checkout() {
                   ? 'buttonSelected'
                   : 'buttonNotSelected'
               }
+              style={
+                buttonSelected === 'card'
+                  ? { backgroundColor: mainColor }
+                  : { color: mainColor }
+              }
               onClick={() => {
                 setButtonSelected('card');
                 setTheChange(0);
               }}
             >
-              <div className="checkoutIconPayment">
+              <div
+                className="checkoutIconPayment"
+                style={
+                  buttonSelected === 'card'
+                    ? { backgroundColor: mainColor }
+                    : {}
+                }
+              >
                 <CreditCard size={32} />
               </div>
               <p>Cartão</p>
@@ -209,7 +235,7 @@ export function Checkout() {
                 inputType="number"
                 focusColor={mainColor}
                 value={theChange}
-                onChange={(event) => setTheChange(+event.target.value)}
+                onChange={event => setTheChange(+event.target.value)}
                 backgroundColor="#F9F9FB"
               />
             </div>
@@ -225,13 +251,13 @@ export function Checkout() {
           </header>
           <div className="checkoutOrderBody">
             <div className="checkoutOrderCardItems">
-              {bagProps?.map((item) => (
+              {bagProps?.map(item => (
                 <CardOrder
                   key={item.product.id}
                   product={item.product}
                   amountProduct={item.amount}
                   mainColor={mainColor}
-                  onQuantity={(value) => handleOnQuantity(item.product, value)}
+                  onQuantity={value => handleOnQuantity(item.product, value)}
                 />
               ))}
             </div>
@@ -263,6 +289,6 @@ export function Checkout() {
       </div>
     </>
   );
-}
+};
 
 export default Checkout;

@@ -28,13 +28,13 @@ export const Home = () => {
       .then(({ data }) => {
         setItemsPromotion(data);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   };
 
   const handleGetItems = (filters?: string) => {
     getItems(filters)
       .then(({ data }) => setItems(data))
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   };
 
   const handleMenuBar = () => {

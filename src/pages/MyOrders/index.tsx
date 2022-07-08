@@ -55,7 +55,7 @@ export function MyOrders() {
         .then(({ data }) => {
           setItemsOrders(data);
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     }
   }, [useLogged]);
 
@@ -81,7 +81,7 @@ export function MyOrders() {
           />
           <DivisionItems completed={0} mainColor={mainColor} />
         </header>
-        {itemsOrders?.map((item) => {
+        {itemsOrders?.map(item => {
           const status = statusConfig[`${item.order_status}` as dictKeys];
           return (
             <div key={item.id} className="myOrderCard">

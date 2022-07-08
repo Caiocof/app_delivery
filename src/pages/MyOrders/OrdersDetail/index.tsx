@@ -48,8 +48,7 @@ export function OrdersDetail() {
         .then(({ data }) => {
           setItemOrder(data);
         })
-        .catch((error) =>
-          console.error(error));
+        .catch(error => console.error(error));
     }
   }, [orderId]);
 
@@ -66,34 +65,35 @@ export function OrdersDetail() {
 
   return (
     <>
-      itemOrder && (
-      <div className="orderDetailContainer">
-        <header className="orderDetailHeader">
-          <HeaderPages
-            title={`Pedido #${itemOrder?.id}`}
-            iconColor={mainColor}
-            navigateRoute="/my-orders"
-          />
-          <p>{formatDate(`${itemOrder?.created_at}`, "dd/MM/yyy '-' HH:mm")}</p>
-          <DivisionItems completed={0} mainColor={mainColor} />
-        </header>
-        <div className="orderDetailItems">
-          <div className="orderDetailItemTop">
-            <p>{`${quantityItems} item${quantityItems > 1 ? 's' : ''}`}</p>
-            <div
-              className="orderDetailStatus"
-              style={{
-                backgroundColor: orderStatus?.background,
-                color: orderStatus?.color,
-              }}
-            >
-              <p>{orderStatus?.name}</p>
+      {itemOrder && (
+        <div className="orderDetailContainer">
+          <header className="orderDetailHeader">
+            <HeaderPages
+              title={`Pedido #${itemOrder?.id}`}
+              iconColor={mainColor}
+              navigateRoute="/my-orders"
+            />
+            <p>
+              {formatDate(`${itemOrder?.created_at}`, "dd/MM/yyy '-' HH:mm")}
+            </p>
+            <DivisionItems completed={0} mainColor={mainColor} />
+          </header>
+          <div className="orderDetailItems">
+            <div className="orderDetailItemTop">
+              <p>{`${quantityItems} item${quantityItems > 1 ? 's' : ''}`}</p>
+              <div
+                className="orderDetailStatus"
+                style={{
+                  backgroundColor: orderStatus?.background,
+                  color: orderStatus?.color,
+                }}
+              >
+                <p>{orderStatus?.name}</p>
+              </div>
             </div>
-          </div>
-          <DivisionItems completed={0} mainColor={mainColor} />
-          <div className="orderDetailItemsBody">
-            {itemOrder?.items.map((listItem) =>
-              (
+            <DivisionItems completed={0} mainColor={mainColor} />
+            <div className="orderDetailItemsBody">
+              {itemOrder?.items.map(listItem => (
                 <CardOrder
                   key={listItem.product.id}
                   product={listItem.product}
@@ -101,90 +101,112 @@ export function OrdersDetail() {
                   mainColor={mainColor}
                 />
               ))}
-          </div>
-          <div className="orderDetailCheckout">
-            <label htmlFor="a">Endereço</label>
-            <div className="orderDetailCheckoutAddress">
-              <div className="orderDetailCheckoutIconAddress">
-                <MapPin size={32} color={mainColor || '#1B1B1B'} />
+            </div>
+            <div className="orderDetailCheckout">
+              <label htmlFor="a">Endereço</label>
+              <div className="orderDetailCheckoutAddress">
+                <div className="orderDetailCheckoutIconAddress">
+                  <MapPin size={32} color={mainColor || '#1B1B1B'} />
+                </div>
+                <p className="orderDetailCheckoutTextAddress">
+                  {itemOrder?.address}
+                </p>
               </div>
-              <p className="orderDetailCheckoutTextAddress">
-                {itemOrder?.address}
-              </p>
-            </div>
-            <label htmlFor="a">Tipo de Pagamento</label>
-            <div className="checkoutTypePayment">
-              <button
-                type="button"
-                className={
-                  buttonSelected === 'money'
-                    ? 'buttonSelected'
-                    : 'buttonNotSelected'
-                }
-                onClick={() =>
-                  setButtonSelected('money')}
-                disabled
-              >
-                <div className="checkoutIconPayment">
-                  <CurrencyCircleDollar size={32} />
-                </div>
-                <p>Dinheiro</p>
-              </button>
-              <button
-                type="button"
-                className={
-                  buttonSelected === 'card'
-                    ? 'buttonSelected'
-                    : 'buttonNotSelected'
-                }
-                onClick={() =>
-                  setButtonSelected('card')}
-                disabled
-              >
-                <div className="checkoutIconPayment">
-                  <CreditCard size={32} />
-                </div>
-                <p>Cartão</p>
-              </button>
-            </div>
-            {buttonSelected === 'money' && (
-              <div className="checkoutValuePayment">
-                <label htmlFor="a">Troco</label>
-                <InputForm
-                  inputType="number"
-                  focusColor={mainColor}
-                  value={itemOrder?.the_change}
-                  backgroundColor="#F9F9FB"
+              <label htmlFor="a">Tipo de Pagamento</label>
+              <div className="checkoutTypePayment">
+                <button
+                  type="button"
+                  className={
+                    buttonSelected === 'money'
+                      ? 'buttonSelected'
+                      : 'buttonNotSelected'
+                  }
+                  style={
+                    buttonSelected === 'money'
+                      ? { backgroundColor: mainColor }
+                      : { color: mainColor }
+                  }
+                  onClick={() => setButtonSelected('money')}
                   disabled
-                />
+                >
+                  <div
+                    className="checkoutIconPayment"
+                    style={
+                      buttonSelected === 'money'
+                        ? { backgroundColor: mainColor }
+                        : {}
+                    }
+                  >
+                    <CurrencyCircleDollar size={32} />
+                  </div>
+                  <p>Dinheiro</p>
+                </button>
+                <button
+                  type="button"
+                  className={
+                    buttonSelected === 'card'
+                      ? 'buttonSelected'
+                      : 'buttonNotSelected'
+                  }
+                  style={
+                    buttonSelected === 'card'
+                      ? { backgroundColor: mainColor }
+                      : { color: mainColor }
+                  }
+                  onClick={() => setButtonSelected('card')}
+                  disabled
+                >
+                  <div
+                    className="checkoutIconPayment"
+                    style={
+                      buttonSelected === 'card'
+                        ? { backgroundColor: mainColor }
+                        : {}
+                    }
+                  >
+                    <CreditCard size={32} />
+                  </div>
+                  <p>Cartão</p>
+                </button>
               </div>
-            )}
-          </div>
-          <div className="orderDetailCheckoutContainer">
-            <div className="orderDetailCheckoutBody">
-              <div className="orderDetailCheckoutCardItems" />
-              <div className="orderDetailCheckoutValueTotal">
-                <div className="orderDetailCheckoutSubtotal">
-                  <span>Subtotal</span>
-                  <span>{formatMoney(itemOrder?.sub_total || 0)}</span>
+              {buttonSelected === 'money' && (
+                <div className="checkoutValuePayment">
+                  <label htmlFor="a">Troco</label>
+                  <InputForm
+                    inputType="number"
+                    focusColor={mainColor}
+                    value={itemOrder?.the_change}
+                    backgroundColor="#F9F9FB"
+                    disabled
+                  />
                 </div>
-                <div className="orderDetailCheckoutValueShipping">
-                  <span>Frete</span>
-                  <span>{formatMoney(itemOrder?.shipping || 0)}</span>
-                </div>
-                <hr />
-                <div className="orderDetailCheckoutTotal">
-                  <span>Total</span>
-                  <span style={{ color: mainColor || '' }}>
-                    {formatMoney(valueTotal)}
-                  </span>
+              )}
+            </div>
+            <div className="orderDetailCheckoutContainer">
+              <div className="orderDetailCheckoutBody">
+                <div className="orderDetailCheckoutCardItems" />
+                <div className="orderDetailCheckoutValueTotal">
+                  <div className="orderDetailCheckoutSubtotal">
+                    <span>Subtotal</span>
+                    <span>{formatMoney(itemOrder?.sub_total || 0)}</span>
+                  </div>
+                  <div className="orderDetailCheckoutValueShipping">
+                    <span>Frete</span>
+                    <span>{formatMoney(itemOrder?.shipping || 0)}</span>
+                  </div>
+                  <hr />
+                  <div className="orderDetailCheckoutTotal">
+                    <span>Total</span>
+                    <span style={{ color: mainColor || '' }}>
+                      {formatMoney(valueTotal)}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      )
+      )}
     </>
   );
 }
