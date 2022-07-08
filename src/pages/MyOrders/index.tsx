@@ -11,7 +11,7 @@ import { listOrders } from '../../service/order';
 import { formatDate, formatMoney, mainColor } from '../../utils';
 import './styles.css';
 
-export const MyOrders = () => {
+export function MyOrders() {
   const navigate = useNavigate();
   const { messageProps } = useContext(MessageContext);
 
@@ -20,7 +20,7 @@ export const MyOrders = () => {
 
   type dictKeys = 'preparing' | 'canceled' | 'send' | 'delivered';
   type valuesKeys = { name: string; background: string; color: string };
-  const status_config: Record<dictKeys, valuesKeys> = {
+  const statusConfig: Record<dictKeys, valuesKeys> = {
     preparing: {
       name: 'Preparando',
       background: '#FEFAE6',
@@ -43,9 +43,9 @@ export const MyOrders = () => {
     },
   };
 
-  const handleDetailOrder = (order_id?: number) => {
-    if (order_id) {
-      navigate(`order-detail/${order_id}`);
+  const handleDetailOrder = (orderId?: number) => {
+    if (orderId) {
+      navigate(`order-detail/${orderId}`);
     }
   };
 
@@ -81,8 +81,8 @@ export const MyOrders = () => {
           />
           <DivisionItems completed={0} mainColor={mainColor} />
         </header>
-        {itemsOrders?.map((item, index) => {
-          const status = status_config[`${item.order_status}` as dictKeys];
+        {itemsOrders?.map((item) => {
+          const status = statusConfig[`${item.order_status}` as dictKeys];
           return (
             <div key={item.id} className="myOrderCard">
               <div className="myOrderCardLeft">
@@ -123,4 +123,6 @@ export const MyOrders = () => {
       </div>
     </>
   );
-};
+}
+
+export default MyOrders;

@@ -34,6 +34,14 @@
   align-items: center;
   justify-content: center;
   background-color: #FFF;
+  border-radius: 5px;
+}
+
+.divAddress .textAddress {
+  max-width: 25ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .checkoutTypePayment {
@@ -121,7 +129,7 @@
   color: #1B1B1B;
 }
 
-.checkoutOrderCardItems{
+.checkoutOrderCardItems {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;

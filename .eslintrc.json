@@ -12,7 +12,11 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": [
+    "react",
+  "react-hooks",
+  "@typescript-eslint"
+],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "implicit-arrow-linebreak": ["error", "below"],
@@ -29,6 +33,7 @@
         "extensions": [".js", ".jsx", ".ts", "tsx"]
       }
     ],
+    "jsx-a11y/label-has-associated-control": ["error", { "assert": "either" }],
     "import/no-unresolved": "off",
     "react/require-default-props": "off",
     "react/react-in-jsx-scope": "off"

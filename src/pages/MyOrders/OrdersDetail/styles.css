@@ -1,0 +1,173 @@
+.orderDetailContainer {
+  display: flex;
+  padding: 35px 1.5rem 25px 1.5rem;
+  flex-direction: column;
+  min-height: 790px;
+  background-color: #FFF;
+}
+
+.orderDetailHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderDetailHeader>p {
+  align-self: center;
+  font-weight: 400;
+  font-size: 0.81rem;
+  line-height: 0.98rem;
+  color: #6A7D8B;
+  margin-bottom: 13px;
+}
+
+.orderDetailItemTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.orderDetailItemTop .orderDetailStatus {
+  display: flex;
+  width: 4.87rem;
+  height: 1.62rem;
+  align-items: center;
+  justify-content: center;
+  background-color: #EDF1F8;
+  color: #4F77BE;
+  border-radius: 4px;
+}
+
+.orderDetailItemTop .orderDetailStatus p {
+  font-weight: 600;
+  font-size: 0.68rem;
+  line-height: 0.83rem;
+}
+
+.orderDetailCheckout label {
+  display: inline-block;
+  margin: 24px 0 8px 0;
+}
+
+.orderDetailCheckoutAddress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 3.81rem;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #F9F9FB;
+}
+
+.orderDetailCheckoutAddress .orderDetailCheckoutIconAddress {
+  display: flex;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF;
+  border-radius: 5px;
+}
+
+.orderDetailCheckoutAddress .orderDetailCheckoutTextAddress {
+  max-width: 25ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ORDERS DETAIL VALUES  CSS*/
+.orderDetailCheckoutContainer {
+  margin-top: 40px;
+}
+
+.orderDetailCheckoutHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.orderDetailCheckoutAmountItems {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.orderDetailCheckoutCardItems {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.orderDetailCheckoutValueTotal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 14.43rem;
+  padding: 48px 32px 48px 32px;
+  gap: 24px;
+  background-color: #F9F9FA;
+  border-radius: 8px;
+}
+
+.orderDetailCheckoutValueTotal>hr {
+  border-top: 1px dashed #96A3AB;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutSubtotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutSubtotal span:nth-child(1) {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutSubtotal span:nth-child(2) {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutValueShipping {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutValueShipping span:nth-child(1) {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutValueShipping span:nth-child(2) {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutTotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutTotal span:nth-child(1) {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}
+
+.orderDetailCheckoutValueTotal .orderDetailCheckoutTotal span:nth-child(2) {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.21rem;
+  color: #1B1B1B;
+}

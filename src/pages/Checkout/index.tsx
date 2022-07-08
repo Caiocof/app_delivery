@@ -22,7 +22,7 @@ import { getShippingForDistrict } from '../../service/shipping';
 import { formatMoney, mainColor } from '../../utils';
 import './styles.css';
 
-export const Checkout = () => {
+export function Checkout() {
   const navigate = useNavigate();
   const { bagProps, addBagItems, removeBagItems } = useContext(BagContext);
   const { messageProps, setMessageProps } = useContext(MessageContext);
@@ -43,7 +43,7 @@ export const Checkout = () => {
   const [theChange, setTheChange] = useState(0);
 
   const handleOnQuantity = (product: IProducts, quantity: number) => {
-    if (quantity == 0) {
+    if (quantity === 0) {
       setShowDialog(true);
       setSelectedProduct(product);
     }
@@ -63,7 +63,7 @@ export const Checkout = () => {
 
   const handleOrderSubmit = () => {
     if (userLogged) {
-      const item_order = {
+      const itemOrder = {
         user_id: userLogged?.id,
         address: addressShipping,
         method_payment: buttonSelected,
@@ -74,7 +74,7 @@ export const Checkout = () => {
         order_status: 'preparing',
         created_at: new Date(),
       };
-      registerOrder(item_order)
+      registerOrder(itemOrder)
         .then(() => {
           setMessageProps({
             message: 'Pedido realizado com sucesso!',
@@ -155,7 +155,7 @@ export const Checkout = () => {
           <DivisionItems completed={0} mainColor={mainColor} />
         </header>
         <div className="checkoutBody">
-          <label>Endereço</label>
+          <label htmlFor="a">Endereço</label>
           <div
             className="divAddress"
             onClick={() =>
@@ -168,11 +168,12 @@ export const Checkout = () => {
             <p className="textAddress">{addressShipping}</p>
             <CaretRight size={32} color={mainColor || '#1B1B1B'} />
           </div>
-          <label>Tipo de Pagamento</label>
+          <label htmlFor="a">Tipo de Pagamento</label>
           <div className="checkoutTypePayment">
             <button
+              type="button"
               className={
-                buttonSelected == 'money'
+                buttonSelected === 'money'
                   ? 'buttonSelected'
                   : 'buttonNotSelected'
               }
@@ -184,8 +185,9 @@ export const Checkout = () => {
               <p>Dinheiro</p>
             </button>
             <button
+              type="button"
               className={
-                buttonSelected == 'card'
+                buttonSelected === 'card'
                   ? 'buttonSelected'
                   : 'buttonNotSelected'
               }
@@ -200,9 +202,9 @@ export const Checkout = () => {
               <p>Cartão</p>
             </button>
           </div>
-          {buttonSelected == 'money' && (
+          {buttonSelected === 'money' && (
             <div className="checkoutValuePayment">
-              <label>Troco</label>
+              <label htmlFor="a">Troco</label>
               <InputForm
                 inputType="number"
                 focusColor={mainColor}
@@ -216,26 +218,22 @@ export const Checkout = () => {
         <div className="checkoutOrderContainer">
           <header className="checkoutOrderHeader">
             <DivisionItems mainColor={mainColor} completed={0} />
-            <span className="checkoutOrderAmountItems">{`${
-              bagProps.length
-            } item${bagProps.length > 1 ? 's' : ''}`}</span>
+            <span className="checkoutOrderAmountItems">
+              {`${bagProps.length} item${bagProps.length > 1 ? 's' : ''}`}
+            </span>
             <DivisionItems mainColor={mainColor} completed={0} />
           </header>
           <div className="checkoutOrderBody">
             <div className="checkoutOrderCardItems">
-              {bagProps?.map((item) => {
-                return (
-                  <CardOrder
-                    key={item.product.id}
-                    product={item.product}
-                    amountProduct={item.amount}
-                    mainColor={mainColor}
-                    onQuantity={(value) =>
-                      handleOnQuantity(item.product, value)
-                    }
-                  />
-                );
-              })}
+              {bagProps?.map((item) => (
+                <CardOrder
+                  key={item.product.id}
+                  product={item.product}
+                  amountProduct={item.amount}
+                  mainColor={mainColor}
+                  onQuantity={(value) => handleOnQuantity(item.product, value)}
+                />
+              ))}
             </div>
             <div className="checkoutOrderValueTotal">
               <div className="checkoutOrderSubtotal">
@@ -256,7 +254,7 @@ export const Checkout = () => {
               <Button
                 buttonColor={mainColor}
                 title="Finalizar Pedido"
-                disabled={bagProps.length > 0 ? false : true}
+                disabled={!(bagProps.length > 0)}
                 isClicked={handleOrderSubmit}
               />
             </div>
@@ -265,4 +263,6 @@ export const Checkout = () => {
       </div>
     </>
   );
-};
+}
+
+export default Checkout;

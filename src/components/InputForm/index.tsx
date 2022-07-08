@@ -9,14 +9,14 @@ interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
   backgroundColor?: string;
   maxWidthWithRem?: number;
 }
-export const InputForm = ({
+export function InputForm({
   focusColor,
   backgroundColor,
   placeholder,
   inputType,
   maxWidthWithRem,
   ...rest
-}: InputFormProps) => {
+}: InputFormProps) {
   const [focused, setFocused] = useState(false);
   const [typeInput, setTypeInput] = useState(inputType);
   const [showPassword, setShowPassword] = useState(false);
@@ -32,9 +32,9 @@ export const InputForm = ({
           }}
         >
           {showPassword ? (
-            <Eye size={30} color={'#1B1B1B80'} />
+            <Eye size={30} color="#1B1B1B80" />
           ) : (
-            <EyeSlash size={30} color={'#1B1B1B80'} />
+            <EyeSlash size={30} color="#1B1B1B80" />
           )}
         </div>
       );
@@ -47,15 +47,15 @@ export const InputForm = ({
       style={
         maxWidthWithRem
           ? {
-              borderColor: focused ? focusColor : '#FFF',
-              maxWidth: `${maxWidthWithRem + 0.5}rem`,
-            }
+            borderColor: focused ? focusColor : '#FFF',
+            maxWidth: `${maxWidthWithRem + 0.5}rem`,
+          }
           : { borderColor: focused ? focusColor : '#FFF' }
       }
     >
       <input
-        //value={inputValue}
-        //onChange={(e) => setInputValue(e.target.value)}
+        // value={inputValue}
+        // onChange={(e) => setInputValue(e.target.value)}
         {...rest}
         className="input"
         placeholder={placeholder}
@@ -63,15 +63,19 @@ export const InputForm = ({
         style={
           maxWidthWithRem
             ? {
-                backgroundColor: backgroundColor,
-                maxWidth: `${maxWidthWithRem}rem`,
-              }
-            : { backgroundColor: backgroundColor }
+              backgroundColor,
+              maxWidth: `${maxWidthWithRem}rem`,
+            }
+            : { backgroundColor }
         }
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={() =>
+          setFocused(true)}
+        onBlur={() =>
+          setFocused(false)}
       />
       {handleIconPassword()}
     </div>
   );
-};
+}
+
+export default InputForm;

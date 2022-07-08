@@ -1,4 +1,6 @@
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import {
+  FormEvent, useContext, useEffect, useState,
+} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getItemForId } from '../../service/items';
 import { IProducts } from '../../interfaces/products';
@@ -13,7 +15,7 @@ import { MessageContext } from '../../contexts/messageContexts';
 
 import './styles.css';
 
-export const Products = () => {
+export function Product() {
   const navigate = useNavigate();
 
   const { id: id_product } = useParams();
@@ -30,7 +32,8 @@ export const Products = () => {
         setItem(data);
         setPrice(data.price);
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>
+        console.log(error));
   };
 
   const handleOnQuantity = (quantity: number) => {
@@ -104,4 +107,6 @@ export const Products = () => {
       </div>
     </>
   );
-};
+}
+
+export default Product;

@@ -1,12 +1,7 @@
-import { useState, useContext, useEffect } from 'react';
-import { BagContext } from '../../contexts/bagContexts';
-import { MessageContext } from '../../contexts/messageContexts';
+import { useState, useEffect } from 'react';
 import { IProducts } from '../../interfaces/products';
 import { burgerImage, formatMoney } from '../../utils';
-import { CustomDialog } from '../Alerts/Dialog';
-import { Message } from '../Alerts/Snackbar';
-import { DivisionItems } from '../DivisionItems';
-import { QuantityInput } from '../QuantityInput';
+import { DivisionItems, QuantityInput } from '../index';
 import './styles.css';
 
 interface CardOrderProps {
@@ -16,14 +11,13 @@ interface CardOrderProps {
   onQuantity?: (quantity: number) => void;
 }
 
-export const CardOrder = ({
+export function CardOrder({
   product,
   amountProduct,
   mainColor,
   onQuantity,
-}: CardOrderProps) => {
+}: CardOrderProps) {
   const [price, setPrice] = useState(product.price || 0);
-  const [amountProductState, setAmountProductState] = useState(amountProduct);
 
   const handleOnQuantity = (quantity: number) => {
     setPrice(product.price * quantity);
@@ -39,15 +33,17 @@ export const CardOrder = ({
   return (
     <>
       <div className="cardOrderContainer">
-        <div className="cardOrderImg">
-          <img src={product.url_image || burgerImage} alt="Product Image" />
-        </div>
-        <div className="cardOrderProduct">
-          <span className="titleProduct">{product.category}</span>
-          <span className="nameProduct">{product.name}</span>
-          <span className="priceProduct" style={{ color: mainColor }}>
-            {formatMoney(price)}
-          </span>
+        <div className="cardOrderImgProduct">
+          <div className="cardOrderImg">
+            <img src={product.url_image || burgerImage} alt={product.name} />
+          </div>
+          <div className="cardOrderProduct">
+            <span className="titleProduct">{product.category}</span>
+            <span className="nameProduct">{product.name}</span>
+            <span className="priceProduct" style={{ color: mainColor }}>
+              {formatMoney(price)}
+            </span>
+          </div>
         </div>
         <div className="cardOrderAmount">
           {onQuantity ? (
@@ -59,24 +55,25 @@ export const CardOrder = ({
               onQuantity={handleOnQuantity}
             />
           ) : (
-            <input
-              type="number"
-              className="inputValue"
-              style={{
-                height: `2.6rem`,
-                width: `2.6rem`,
-                color: mainColor,
-              }}
-              minLength={0}
-              max={20}
-              value={amountProduct}
-              onChange={() => {}}
-              disabled={true}
-            />
+            <div className="cardOrderInputQuantity">
+              <label style={{ color: mainColor }}>Qnt.</label>
+              <input
+                type="number"
+                className="inputValue"
+                style={{ color: mainColor }}
+                minLength={0}
+                max={20}
+                value={amountProduct}
+                onChange={() => {}}
+                disabled
+              />
+            </div>
           )}
         </div>
       </div>
       <DivisionItems completed={0} mainColor={mainColor} />
     </>
   );
-};
+}
+
+export default CardOrder;

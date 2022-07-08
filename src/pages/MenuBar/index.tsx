@@ -14,14 +14,14 @@ import { IUser } from '../../interfaces/user';
 import { formatDate, mainColor } from '../../utils';
 import './styles.css';
 
-export const MenuBar = () => {
+export function MenuBar() {
   const navigate = useNavigate();
 
   const [userLogged, setUserLogged] = useState<IUser>();
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
-      let userStorage = JSON.parse(localStorage.getItem('user') || '');
+      const userStorage = JSON.parse(localStorage.getItem('user') || '');
       setUserLogged(userStorage);
     }
   }, []);
@@ -45,7 +45,8 @@ export const MenuBar = () => {
       <Button
         title="Fazer Login"
         buttonColor={mainColor}
-        isClicked={() => navigate('/account')}
+        isClicked={() =>
+          navigate('/account')}
       />
     );
   };
@@ -59,20 +60,29 @@ export const MenuBar = () => {
             size={20}
             weight="bold"
             color={mainColor || '#1B1B1B'}
-            onClick={() => navigate('/')}
+            onClick={() =>
+              navigate('/')}
           />
         </div>
       </div>
       <DivisionItems mainColor={mainColor} completed={50} />
       <div className="menuBody">
         <ul>
-          <li className="menuList" onClick={() => navigate('/')}>
+          <li
+            className="menuList"
+            onClick={() =>
+              navigate('/')}
+          >
             <div className="menuListIcon">
               <ForkKnife size={20} weight="bold" color="#6A7D8B" />
             </div>
             <div className="menuListName">Cardápio</div>
           </li>
-          <li className="menuList" onClick={() => navigate('/bag')}>
+          <li
+            className="menuList"
+            onClick={() =>
+              navigate('/bag')}
+          >
             <div className="menuListIcon">
               <Bag size={20} weight="bold" color="#6A7D8B" />
             </div>
@@ -80,7 +90,11 @@ export const MenuBar = () => {
           </li>
           {userLogged && (
             <>
-              <li className="menuList" onClick={() => navigate('/my-orders')}>
+              <li
+                className="menuList"
+                onClick={() =>
+                  navigate('/my-orders')}
+              >
                 <div className="menuListIcon">
                   <ClipboardText size={20} weight="bold" color="#6A7D8B" />
                 </div>
@@ -106,4 +120,6 @@ export const MenuBar = () => {
       )}
     </div>
   );
-};
+}
+
+export default MenuBar;

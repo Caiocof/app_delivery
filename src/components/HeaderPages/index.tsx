@@ -1,4 +1,4 @@
-import { ArrowLeft, Heart } from 'phosphor-react';
+import { ArrowLeft } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 
@@ -10,13 +10,13 @@ interface HeaderPagesProps {
   backgroundColor?: string;
 }
 
-export const HeaderPages = ({
+export function HeaderPages({
   iconColor,
   title,
   backgroundColor,
   titleColor,
   navigateRoute,
-}: HeaderPagesProps) => {
+}: HeaderPagesProps) {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -28,8 +28,9 @@ export const HeaderPages = ({
   return (
     <div className="containerHeaderPages">
       <button
+        type="button"
         className="buttonBackHeaderPages"
-        style={{ backgroundColor: backgroundColor }}
+        style={{ backgroundColor }}
         onClick={handleNavigate}
       >
         <ArrowLeft size={20} weight="bold" color={iconColor || '#1B1B1B'} />
@@ -40,7 +41,9 @@ export const HeaderPages = ({
       >
         {title}
       </p>
-      <div className="buttonRightHeaderPages"></div>
+      <div className="buttonRightHeaderPages" />
     </div>
   );
-};
+}
+
+export default HeaderPages;
