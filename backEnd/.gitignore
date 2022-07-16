@@ -1,0 +1,8 @@
+sql_app.db
+venv/
+__pycache__/
+.idea/
+.vscode/
+.env
+.pytest_cache
+alembic/versions/*.py

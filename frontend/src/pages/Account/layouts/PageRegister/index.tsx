@@ -2,7 +2,10 @@ import { FormEvent, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MessageContext } from '../../../../contexts';
 import {
-  Button, DivisionItems, HeaderPages, InputForm,
+  Button,
+  DivisionItems,
+  HeaderPages,
+  InputForm,
 } from '../../../../components';
 import { registerUser } from '../../../../service/users';
 import { mainColor } from '../../../../utils';
@@ -40,8 +43,7 @@ export function PageRegister() {
           });
         }
       })
-      .catch((error) =>
-        console.log(error));
+      .catch(error => console.log(error));
   };
 
   return (
@@ -51,11 +53,7 @@ export function PageRegister() {
         <div className="accountHeaderBody">
           <div className="accountHeaderLogo">
             <p>
-              B7
-              {' '}
-              <span style={{ color: mainColor }}>•</span>
-              {' '}
-              Burger
+              B7 <span style={{ color: mainColor }}>•</span> Burger
             </p>
           </div>
           <span className="accountHeaderText">
@@ -104,11 +102,7 @@ export function PageRegister() {
       </form>
       <span className="messageFooter">
         Já tem cadastro?
-        <a
-          onClick={() =>
-            navigate('/account')}
-          style={{ color: mainColor }}
-        >
+        <a onClick={() => navigate('/account')} style={{ color: mainColor }}>
           {' '}
           Fazer Login
         </a>
