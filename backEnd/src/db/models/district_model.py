@@ -9,9 +9,9 @@ class DistrictModel(Base):
     __tablename__ = "districts"
 
     id_district = Column(GUID(), primary_key=True, unique=True, default=uuid4, index=True)
-    id_tenant = Column(GUID(),
-                       ForeignKey('tenants.id', name='fk_tenant_district'),
-                       nullable=False)
+    tenant = Column(GUID(),
+                    ForeignKey('tenants.id_tenant', name='fk_tenant_district'),
+                    nullable=False)
     name = Column(String(100), nullable=False)
     price_shipping = Column(Float, nullable=True)
     created_at = Column(TIMESTAMP,
