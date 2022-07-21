@@ -2,8 +2,9 @@ import enum
 from uuid import uuid4
 from sqlalchemy import Column, String, Float, TIMESTAMP, ForeignKey, Enum
 from sqlalchemy.sql import func
+from sqlalchemy.dialects.postgresql import UUID
 
-from src.db.settings.config import Base, GUID
+from src.db.settings.config import Base
 
 
 class StateOrderEnum(enum.Enum):
@@ -16,14 +17,14 @@ class StateOrderEnum(enum.Enum):
 class OrdersModel(Base):
     __tablename__ = "orders"
 
-    id_order = Column(GUID(), primary_key=True, unique=True, default=uuid4, index=True)
-    user = Column(GUID(),
+    id_order = Column(UUID(as_uuid=True), primary_key=True, unique=True, default=uuid4, index=True)
+    user = Column(UUID(as_uuid=True),
                   ForeignKey('users.id_user', name='fk_user_orders'),
                   nullable=False)
-    tenant = Column(GUID(),
+    tenant = Column(UUID(as_uuid=True),
                     ForeignKey('tenants.id_tenant', name='fk_tenant_orders'),
                     nullable=False)
-    address = Column(GUID(),
+    address = Column(UUID(as_uuid=True),
                      ForeignKey('user_addresses.id_address', name='fk_address_orders'),
                      nullable=False)
     status = Column(Enum(StateOrderEnum), nullable=False)

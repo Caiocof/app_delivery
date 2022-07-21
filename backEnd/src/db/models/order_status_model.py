@@ -2,8 +2,9 @@ import enum
 from uuid import uuid4
 from sqlalchemy import Column, TIMESTAMP, ForeignKey, Enum
 from sqlalchemy.sql import func
+from sqlalchemy.dialects.postgresql import UUID
 
-from src.db.settings.config import Base, GUID
+from src.db.settings.config import Base
 
 
 class StateOrderEnum(enum.Enum):
@@ -16,12 +17,12 @@ class StateOrderEnum(enum.Enum):
 class OrderStatusesModel(Base):
     __tablename__ = "order_statuses"
 
-    id_order_status = Column(GUID(),
+    id_order_status = Column(UUID(as_uuid=True),
                              primary_key=True,
                              unique=True,
                              default=uuid4,
                              index=True)
-    order = Column(GUID(),
+    order = Column(UUID(as_uuid=True),
                    ForeignKey('orders.id_order', name='fk_order_order_status'),
                    nullable=False)
     status = Column(Enum(StateOrderEnum), nullable=False)
