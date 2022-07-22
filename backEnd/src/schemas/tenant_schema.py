@@ -8,7 +8,7 @@ class TenantColors(BaseModel):
 
 class TenantBase(BaseModel):
     name: str
-    mainColor: {TenantColors}
+    mainColor: TenantColors
     status: bool
     email: str
     password: str
@@ -19,7 +19,7 @@ class TenantBase(BaseModel):
 
 class TenantResponse(BaseModel):
     name: str
-    mainColor: {TenantColors}
+    mainColor: TenantColors
     status: bool
     email: str
 

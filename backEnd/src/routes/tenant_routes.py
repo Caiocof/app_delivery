@@ -7,58 +7,58 @@ from src.schemas.tenant_schema import (
     TenantBase,
     TenantResponse
 )
-from src.controllers.customer_controller import CustomerController
+from src.controllers.tenant_controller import TenantController
 
-customer_router = APIRouter(prefix='/customer')
+tenant_router = APIRouter(prefix='/tenant', tags=['Tenants'])
 
 
-@customer_router.get('/', response_model=List[CustomerListResponse])
-def handle_get_all_customers(db: Session = Depends(get_db)):
+@tenant_router.get('', response_model=List[TenantResponse])
+def handle_get_all_tenants(db: Session = Depends(get_db)):
     """
-    Return all customers from database
+    Return all tenants from database
     """
-    return CustomerController().handle_list(db)
+    return TenantController().handle_list(db)
 
 
-@customer_router.get('/{customer_id}', response_model=CustomerResponse)
-def handle_get_customer(customer_id: str, db: Session = Depends(get_db)):
+@tenant_router.get('/{tenant_id}', response_model=TenantResponse)
+def handle_get_tenant(tenant_id: str, db: Session = Depends(get_db)):
     """
-    This route return the customer data by the custumer's UUID.
+    This route return the tenant data by UUID.
     """
-    return CustomerController().handle_get(db, customer_id)
+    return TenantController().handle_get(db, tenant_id)
 
 
-@customer_router.post('/', response_model=CustomerBase, status_code=201)
-def handle_create_customer(data: CustomerCreate, db: Session = Depends(get_db)):
+@tenant_router.post('', response_model=TenantBase, status_code=201)
+def handle_create_tenant(data: TenantBase, db: Session = Depends(get_db)):
     """
-    This route is used do create a new customer
+    This route is used do create a new tenant.
     """
-    return CustomerController().handle_create(db, data)
+    return TenantController().handle_create(db, data)
 
 
-@customer_router.delete(
-    '/{customer_id}',
+@tenant_router.delete(
+    '/{tenant_id}',
     status_code=204,
     response_class=Response
 )
-def handle_delete_customer(customer_id: str, db: Session = Depends(get_db)):
+def handle_delete_tenant(tenant_id: str, db: Session = Depends(get_db)):
     """
-    Delete a customer by ID
+    Delete a Tenant by ID
     """
-    return CustomerController().handle_delete(db, customer_id)
+    return TenantController().handle_delete(db, tenant_id)
 
 
-@customer_router.patch(
-    '/{customer_id}',
+@tenant_router.patch(
+    '/{tenant_id}',
     status_code=204,
     response_class=Response
 )
-def handle_patch_customer(
-    data: CustomerCreate,
-    customer_id: str,
+def handle_patch_tenant(
+    data: TenantBase,
+    tenant_id: str,
     db: Session = Depends(get_db)
 ):
     """
-    Update values from a customer
+    Update values from a Tenant
     """
-    return CustomerController().handle_patch(db, customer_id, data)
+    return TenantController().handle_patch(db, tenant_id, data)
