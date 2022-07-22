@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 
 from src.db.settings.config import get_db
 from src.controllers.auth_controller import AuthController
-from src.schemas.auth.auth_schema import ResponseLogin, LoginData
-from src.schemas.user.user_schema import UserResponse
+from src.schemas.auth_schema import ResponseLogin, LoginData
+from src.schemas.user_schema import UserResponse
 
 auth_router = APIRouter()
 

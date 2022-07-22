@@ -8,9 +8,9 @@ from src.exceptions.excepetions import UnauthorizedException, BadRequestExceptio
 from src.settings.providers.hash_provider import verify_password
 from src.settings.providers.token_provider import create_access_token, decode_token
 
-from src.db.cruds.auth_crud import AuthCRUD
+from src.db.cruds.user_crud import AuthCRUD
 from src.controllers.base import BaseController
-from src.schemas.auth.auth_schema import LoginData, TokenData
+from src.schemas.auth_schema import LoginData, TokenData
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
