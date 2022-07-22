@@ -3,14 +3,14 @@ from pydantic import BaseModel
 
 
 class TokenData(BaseModel):
-    username: Optional[str] = None
+    email: Optional[str] = None
 
 
 class LoginData(BaseModel):
-    username: str
+    email: str
     password: str
 
 
 class ResponseLogin(BaseModel):
-    username: str
+    email: str
     access_token: str

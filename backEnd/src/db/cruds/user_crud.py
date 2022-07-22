@@ -9,7 +9,6 @@ class UserCRUD(BaseCRUD):
     def __init__(self):
         super().__init__(UserModel)
 
-    def find_by_user_name(self, db: Session, user_name: str):
-        # user = db.query(AuthModel).filter_by(username=user_name).first()
-        # return user
-        pass
+    def find_by_user_email(self, db: Session, email: str):
+        user = db.query(UserModel).filter_by(email=email).first()
+        return user
