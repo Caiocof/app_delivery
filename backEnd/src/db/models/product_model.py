@@ -9,7 +9,11 @@ from src.db.settings.config import Base
 class ProductModel(Base):
     __tablename__ = "products"
 
-    id_product = Column(UUID(as_uuid=True), primary_key=True, unique=True, default=uuid4, index=True)
+    id_product = Column(UUID(as_uuid=True),
+                        primary_key=True,
+                        unique=True,
+                        default=uuid4,
+                        index=True)
     tenant = Column(UUID(as_uuid=True),
                     ForeignKey('tenants.id_tenant', name='fk_tenant_product'),
                     nullable=False)

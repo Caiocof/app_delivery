@@ -45,7 +45,10 @@ def handle_delete_tenant(tenant_id: UUID, db: Session = Depends(get_db)):
 
 
 @tenant_router.patch('/{tenant_id}', status_code=204, response_class=Response)
-def handle_patch_tenant(tenant_data: TenantBase, tenant_id: UUID, db: Session = Depends(get_db)):
+def handle_patch_tenant(tenant_data: TenantBase,
+                        tenant_id: UUID,
+                        db: Session = Depends(get_db)
+                        ):
     """
     Update values from a Tenant
     """

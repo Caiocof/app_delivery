@@ -9,7 +9,11 @@ from src.db.settings.config import Base
 class TenantModel(Base):
     __tablename__ = "tenants"
 
-    id_tenant = Column(UUID(as_uuid=True), primary_key=True, unique=True, default=uuid4, index=True)
+    id_tenant = Column(UUID(as_uuid=True),
+                       primary_key=True,
+                       unique=True,
+                       default=uuid4,
+                       index=True)
     name = Column(String(150), nullable=False)
     document = Column(String(15), unique=True, nullable=False)
     main_color = Column(JSONB, nullable=False)

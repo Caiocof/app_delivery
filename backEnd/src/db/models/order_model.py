@@ -17,7 +17,11 @@ class StateOrderEnum(enum.Enum):
 class OrdersModel(Base):
     __tablename__ = "orders"
 
-    id_order = Column(UUID(as_uuid=True), primary_key=True, unique=True, default=uuid4, index=True)
+    id_order = Column(UUID(as_uuid=True),
+                      primary_key=True,
+                      unique=True,
+                      default=uuid4,
+                      index=True)
     user = Column(UUID(as_uuid=True),
                   ForeignKey('users.id_user', name='fk_user_orders'),
                   nullable=False)
