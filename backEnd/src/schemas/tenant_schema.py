@@ -1,14 +1,15 @@
 from pydantic import BaseModel
 
 
-class TenantColors(BaseModel):
+class Colors(BaseModel):
     primary: str
     secondary: str
 
 
 class TenantBase(BaseModel):
     name: str
-    mainColor: TenantColors
+    document: str
+    main_color: Colors
     status: bool
     email: str
     password: str
@@ -19,7 +20,8 @@ class TenantBase(BaseModel):
 
 class TenantResponse(BaseModel):
     name: str
-    mainColor: TenantColors
+    document: str
+    main_color: str
     status: bool
     email: str
 
