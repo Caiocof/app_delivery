@@ -36,14 +36,6 @@ def handle_create_tenant(tenant_data: TenantBase, db: Session = Depends(get_db))
     return TenantController().handle_create(db=db, data=tenant_data)
 
 
-@tenant_router.delete('/{tenant_id}', status_code=204, response_class=Response)
-def handle_delete_tenant(tenant_id: UUID, db: Session = Depends(get_db)):
-    """
-    Delete a Tenant by ID
-    """
-    return TenantController().handle_delete(db=db, object_id=tenant_id)
-
-
 @tenant_router.patch('/{tenant_id}', status_code=204, response_class=Response)
 def handle_patch_tenant(tenant_data: TenantBase,
                         tenant_id: UUID,
