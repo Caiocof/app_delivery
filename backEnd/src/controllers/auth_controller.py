@@ -5,8 +5,8 @@ from sqlalchemy.orm import Session
 
 from src.db.settings.config import get_db
 from src.exceptions.excepetions import UnauthorizedException, BadRequestException
-from src.settings.providers.hash_provider import verify_password
-from src.settings.providers.token_provider import create_access_token, decode_token
+from src.shared.providers.hash_provider import verify_password
+from src.shared.providers.token_provider import create_access_token, decode_token
 
 from src.db.cruds.user_crud import UserCRUD
 from src.controllers.base import BaseController

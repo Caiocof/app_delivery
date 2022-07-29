@@ -5,7 +5,7 @@ from uuid import UUID
 from src.db.settings.config import get_db
 from src.schemas.tenant_schema import (
     TenantBase,
-    TenantResponse
+    TenantResponse, TenantUpdate
 )
 from src.controllers.tenant_controller import TenantController
 
@@ -28,7 +28,7 @@ def handle_get_tenant(tenant_id: UUID, db: Session = Depends(get_db)):
     return TenantController().handle_get(db=db, object_id=tenant_id)
 
 
-@tenant_router.post('', response_model=TenantBase, status_code=201)
+@tenant_router.post('', response_model=TenantResponse, status_code=201)
 def handle_create_tenant(tenant_data: TenantBase, db: Session = Depends(get_db)):
     """
     This route is used do create a new tenant.
@@ -37,7 +37,7 @@ def handle_create_tenant(tenant_data: TenantBase, db: Session = Depends(get_db))
 
 
 @tenant_router.patch('/{tenant_id}', status_code=204, response_class=Response)
-def handle_patch_tenant(tenant_data: TenantBase,
+def handle_patch_tenant(tenant_data: TenantUpdate,
                         tenant_id: UUID,
                         db: Session = Depends(get_db)
                         ):

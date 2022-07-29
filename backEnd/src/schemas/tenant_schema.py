@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class Colors(BaseModel):
@@ -11,7 +11,7 @@ class TenantBase(BaseModel):
     document: str
     main_color: Colors
     status: bool
-    email: str
+    email: EmailStr
     password: str
 
     class Config:
@@ -23,7 +23,18 @@ class TenantResponse(BaseModel):
     document: str
     main_color: str
     status: bool
-    email: str
+    email: EmailStr
+
+    class Config:
+        orm_mode = True
+
+
+class TenantUpdate(BaseModel):
+    name: str
+    document: str
+    main_color: Colors
+    status: bool
+    email: EmailStr
 
     class Config:
         orm_mode = True
