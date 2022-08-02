@@ -40,7 +40,7 @@ def handle_create_user(data: UserBase, db: Session = Depends(get_db)):
 @user_router.delete('/{user_id}', status_code=204, response_class=Response)
 def handle_delete_user(user_id: UUID, db: Session = Depends(get_db)):
     """
-    Delete a Tenant by ID
+    Delete a User by ID
     """
     return UserController().handle_delete(db, user_id)
 
@@ -48,6 +48,6 @@ def handle_delete_user(user_id: UUID, db: Session = Depends(get_db)):
 @user_router.patch('/{user_id}', status_code=204, response_class=Response)
 def handle_patch_user(data: UserBase, user_id: UUID, db: Session = Depends(get_db)):
     """
-    Update values from a Tenant
+    Update values from a User
     """
     return UserController().handle_patch(db, user_id, data)

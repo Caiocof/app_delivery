@@ -17,13 +17,13 @@ class StateOrderEnum(enum.Enum):
 class OrderStatusesModel(Base):
     __tablename__ = "order_statuses"
 
-    id_order_status = Column(UUID(as_uuid=True),
-                             primary_key=True,
-                             unique=True,
-                             default=uuid4,
-                             index=True)
+    id = Column(UUID(as_uuid=True),
+                primary_key=True,
+                unique=True,
+                default=uuid4,
+                index=True)
     order = Column(UUID(as_uuid=True),
-                   ForeignKey('orders.id_order', name='fk_order_order_status'),
+                   ForeignKey('orders.id', name='fk_order_order_status'),
                    nullable=False)
     status = Column(Enum(StateOrderEnum), nullable=False)
     created_at = Column(TIMESTAMP,

@@ -9,7 +9,7 @@ from src.db.settings.config import Base
 class TenantModel(Base):
     __tablename__ = "tenants"
 
-    id_tenant = Column(UUID(as_uuid=True),
+    id = Column(UUID(as_uuid=True),
                        primary_key=True,
                        unique=True,
                        default=uuid4,

@@ -9,13 +9,13 @@ from src.db.settings.config import Base
 class ProductCategoriesModel(Base):
     __tablename__ = "product_categories"
 
-    id_product_categories = Column(UUID(as_uuid=True),
-                                   primary_key=True,
-                                   unique=True,
-                                   default=uuid4,
-                                   index=True)
+    id = Column(UUID(as_uuid=True),
+                primary_key=True,
+                unique=True,
+                default=uuid4,
+                index=True)
     tenant = Column(UUID(as_uuid=True),
-                    ForeignKey('tenants.id_tenant', name='fk_tenant_product_categories'),
+                    ForeignKey('tenants.id', name='fk_tenant_product_categories'),
                     nullable=False)
     name = Column(String(150), nullable=False)
     created_at = Column(TIMESTAMP,

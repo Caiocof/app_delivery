@@ -8,13 +8,13 @@ from src.db.settings.config import Base
 class DistrictModel(Base):
     __tablename__ = "districts"
 
-    id_district = Column(UUID(as_uuid=True),
-                         primary_key=True,
-                         unique=True,
-                         default=uuid4,
-                         index=True)
+    id = Column(UUID(as_uuid=True),
+                primary_key=True,
+                unique=True,
+                default=uuid4,
+                index=True)
     tenant = Column(UUID(as_uuid=True),
-                    ForeignKey('tenants.id_tenant', name='fk_tenant_district'),
+                    ForeignKey('tenants.id', name='fk_tenant_district'),
                     nullable=False)
     name = Column(String(100), nullable=False)
     price_shipping = Column(Float, nullable=True)

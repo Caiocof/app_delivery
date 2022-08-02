@@ -9,16 +9,16 @@ from src.db.settings.config import Base
 class OrderProductsModel(Base):
     __tablename__ = "order_products"
 
-    id_order_product = Column(UUID(as_uuid=True),
-                              primary_key=True,
-                              unique=True,
-                              default=uuid4,
-                              index=True)
+    id = Column(UUID(as_uuid=True),
+                primary_key=True,
+                unique=True,
+                default=uuid4,
+                index=True)
     order = Column(UUID(as_uuid=True),
-                   ForeignKey('orders.id_order', name='fk_order_order_product'),
+                   ForeignKey('orders.id', name='fk_order_order_product'),
                    nullable=False)
     product = Column(UUID(as_uuid=True),
-                     ForeignKey('products.id_product', name='fk_product_order_product'),
+                     ForeignKey('products.id', name='fk_product_order_product'),
                      nullable=False)
     product_price = Column(Float, nullable=False)
     quantity = Column(Integer, nullable=False)

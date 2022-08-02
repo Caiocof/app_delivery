@@ -9,16 +9,16 @@ from src.db.settings.config import Base
 class UserAddressModel(Base):
     __tablename__ = "user_addresses"
 
-    id_address = Column(UUID(as_uuid=True),
-                        primary_key=True,
-                        unique=True,
-                        default=uuid4,
-                        index=True)
+    id = Column(UUID(as_uuid=True),
+                primary_key=True,
+                unique=True,
+                default=uuid4,
+                index=True)
     user = Column(UUID(as_uuid=True),
-                  ForeignKey('users.id_user', name='fk_user_address'),
+                  ForeignKey('users.id', name='fk_user_address'),
                   nullable=False)
     district = Column(UUID(as_uuid=True),
-                      ForeignKey('districts.id_district', name='fk_district_address'),
+                      ForeignKey('districts.id', name='fk_district_address'),
                       nullable=False)
     street = Column(String(150), nullable=False)
     street_number = Column(String(10), nullable=True)

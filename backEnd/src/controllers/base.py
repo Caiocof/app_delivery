@@ -45,4 +45,4 @@ class BaseController(BaseInterfaceController):
                 detail={'message': 'resource not found'}
             )
 
-        return self.crud_class().patch(db, object_id, data, commit)
+        return self.crud_class().patch(db=db, object_id=object_id, data=data, commit=commit)

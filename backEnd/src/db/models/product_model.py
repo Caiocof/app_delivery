@@ -9,16 +9,16 @@ from src.db.settings.config import Base
 class ProductModel(Base):
     __tablename__ = "products"
 
-    id_product = Column(UUID(as_uuid=True),
-                        primary_key=True,
-                        unique=True,
-                        default=uuid4,
-                        index=True)
+    id = Column(UUID(as_uuid=True),
+                primary_key=True,
+                unique=True,
+                default=uuid4,
+                index=True)
     tenant = Column(UUID(as_uuid=True),
-                    ForeignKey('tenants.id_tenant', name='fk_tenant_product'),
+                    ForeignKey('tenants.id', name='fk_tenant_product'),
                     nullable=False)
     category = Column(UUID(as_uuid=True),
-                      ForeignKey('product_categories.id_product_categories',
+                      ForeignKey('product_categories.id',
                                  name='fk_category_product'),
                       nullable=False)
     name = Column(String(255), nullable=False)

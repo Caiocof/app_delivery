@@ -1,4 +1,5 @@
 from re import search
+from datetime import date
 from requests import get
 from validate_docbr import CNPJ, CPF, CNH, RENAVAM
 from src.schemas.utils_schema import ValidateDocs
@@ -51,3 +52,8 @@ class UtilService:
             return True
         else:
             return False
+
+    @staticmethod
+    def remove_none_in_form(form):
+        return {key: value for key, value in form.__dict__.items()
+                if not (value in [None, '', 'string', date.today()]) and not key.startswith('_')}

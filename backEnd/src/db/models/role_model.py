@@ -9,7 +9,7 @@ from src.db.settings.config import Base
 class RoleModel(Base):
     __tablename__ = "roles"
 
-    id_role = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     name = Column(String(30), nullable=False)
     created_at = Column(TIMESTAMP,
                         server_default=func.now(),
